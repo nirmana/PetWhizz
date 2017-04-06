@@ -1,0 +1,409 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PetWhizzModelStoreContainer" CdmEntityContainer="PetWhizzEntities">
+    <EntitySetMapping Name="animals">
+      <EntityTypeMapping TypeName="PetWhizzModel.animal">
+        <MappingFragment StoreEntitySet="animal">
+          <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="scientificName" ColumnName="scientificName" />
+          <ScalarProperty Name="callingName" ColumnName="callingName" />
+          <ScalarProperty Name="animalName" ColumnName="animalName" />
+          <ScalarProperty Name="animalTypeId" ColumnName="animalTypeId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="animalBreeds">
+      <EntityTypeMapping TypeName="PetWhizzModel.animalBreed">
+        <MappingFragment StoreEntitySet="animalBreed">
+          <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="breedName" ColumnName="breedName" />
+          <ScalarProperty Name="animalId" ColumnName="animalId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="animalTypes">
+      <EntityTypeMapping TypeName="PetWhizzModel.animalType">
+        <MappingFragment StoreEntitySet="animalType">
+          <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="animalType1" ColumnName="animalType" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="clinics">
+      <EntityTypeMapping TypeName="PetWhizzModel.clinic">
+        <MappingFragment StoreEntitySet="clinic">
+          <ScalarProperty Name="lastUpdatedBy" ColumnName="lastUpdatedBy" />
+          <ScalarProperty Name="lastUpdatedDate" ColumnName="lastUpdatedDate" />
+          <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+          <ScalarProperty Name="transactionCount" ColumnName="transactionCount" />
+          <ScalarProperty Name="isOpen" ColumnName="isOpen" />
+          <ScalarProperty Name="logo" ColumnName="logo" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="mobileNumber" ColumnName="mobileNumber" />
+          <ScalarProperty Name="telephoneNumber" ColumnName="telephoneNumber" />
+          <ScalarProperty Name="gps" ColumnName="gps" />
+          <ScalarProperty Name="cityId" ColumnName="cityId" />
+          <ScalarProperty Name="addressLine2" ColumnName="addressLine2" />
+          <ScalarProperty Name="addressLine1" ColumnName="addressLine1" />
+          <ScalarProperty Name="slogan" ColumnName="slogan" />
+          <ScalarProperty Name="clinicName" ColumnName="clinicName" />
+          <ScalarProperty Name="clinicTypeId" ColumnName="clinicTypeId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="clinicServiceHours">
+      <EntityTypeMapping TypeName="PetWhizzModel.clinicServiceHour">
+        <MappingFragment StoreEntitySet="clinicServiceHours">
+          <ScalarProperty Name="closingTime" ColumnName="closingTime" />
+          <ScalarProperty Name="openingTime" ColumnName="openingTime" />
+          <ScalarProperty Name="day" ColumnName="day" />
+          <ScalarProperty Name="clinicId" ColumnName="clinicId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="clinicServiceRequests">
+      <EntityTypeMapping TypeName="PetWhizzModel.clinicServiceRequest">
+        <MappingFragment StoreEntitySet="clinicServiceRequest">
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="selfReference" ColumnName="selfReference" />
+          <ScalarProperty Name="isRescheduled" ColumnName="isRescheduled" />
+          <ScalarProperty Name="completedTime" ColumnName="completedTime" />
+          <ScalarProperty Name="isCompleted" ColumnName="isCompleted" />
+          <ScalarProperty Name="isApproved" ColumnName="isApproved" />
+          <ScalarProperty Name="requestedTime" ColumnName="requestedTime" />
+          <ScalarProperty Name="requestRemark" ColumnName="requestRemark" />
+          <ScalarProperty Name="clinicServiceTypeId" ColumnName="clinicServiceTypeId" />
+          <ScalarProperty Name="petOwnerId" ColumnName="petOwnerId" />
+          <ScalarProperty Name="requestedTimeSlotId" ColumnName="requestedTimeSlotId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="clinicServiceTypes">
+      <EntityTypeMapping TypeName="PetWhizzModel.clinicServiceType">
+        <MappingFragment StoreEntitySet="clinicServiceType">
+          <ScalarProperty Name="serviceTypeId" ColumnName="serviceTypeId" />
+          <ScalarProperty Name="clinicId" ColumnName="clinicId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="clinicSubscriptions">
+      <EntityTypeMapping TypeName="PetWhizzModel.clinicSubscription">
+        <MappingFragment StoreEntitySet="clinicSubscription">
+          <ScalarProperty Name="isRedeemed" ColumnName="isRedeemed" />
+          <ScalarProperty Name="isCurrent" ColumnName="isCurrent" />
+          <ScalarProperty Name="schemeFee" ColumnName="schemeFee" />
+          <ScalarProperty Name="subscribedDate" ColumnName="subscribedDate" />
+          <ScalarProperty Name="schemeAllowedTransactions" ColumnName="schemeAllowedTransactions" />
+          <ScalarProperty Name="subscribedUnits" ColumnName="subscribedUnits" />
+          <ScalarProperty Name="subscribedTo" ColumnName="subscribedTo" />
+          <ScalarProperty Name="subscribedFrom" ColumnName="subscribedFrom" />
+          <ScalarProperty Name="paymentSchemeId" ColumnName="paymentSchemeId" />
+          <ScalarProperty Name="clinicId" ColumnName="clinicId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="clinicSubscriptionAddons">
+      <EntityTypeMapping TypeName="PetWhizzModel.clinicSubscriptionAddon">
+        <MappingFragment StoreEntitySet="clinicSubscriptionAddon">
+          <ScalarProperty Name="requestedDate" ColumnName="requestedDate" />
+          <ScalarProperty Name="addonFee" ColumnName="addonFee" />
+          <ScalarProperty Name="transactionsAllowed" ColumnName="transactionsAllowed" />
+          <ScalarProperty Name="subscriptionId" ColumnName="subscriptionId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="clinicSubscriptionStatus">
+      <EntityTypeMapping TypeName="PetWhizzModel.clinicSubscriptionStatu">
+        <MappingFragment StoreEntitySet="clinicSubscriptionStatus">
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="currentTransactionsCount" ColumnName="currentTransactionsCount" />
+          <ScalarProperty Name="totalTransactionsAllowed" ColumnName="totalTransactionsAllowed" />
+          <ScalarProperty Name="subscriptionId" ColumnName="subscriptionId" />
+          <ScalarProperty Name="clinicId" ColumnName="clinicId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="clinicTypes">
+      <EntityTypeMapping TypeName="PetWhizzModel.clinicType">
+        <MappingFragment StoreEntitySet="clinicType">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="countries">
+      <EntityTypeMapping TypeName="PetWhizzModel.country">
+        <MappingFragment StoreEntitySet="country">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="sortname" ColumnName="sortname" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ioLoggers">
+      <EntityTypeMapping TypeName="PetWhizzModel.ioLogger">
+        <MappingFragment StoreEntitySet="ioLogger">
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="headers" ColumnName="headers" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="url" ColumnName="url" />
+          <ScalarProperty Name="json" ColumnName="json" />
+          <ScalarProperty Name="triggeredTime" ColumnName="triggeredTime" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="paymentPlanTypes">
+      <EntityTypeMapping TypeName="PetWhizzModel.paymentPlanType">
+        <MappingFragment StoreEntitySet="paymentPlanTypes">
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="planType" ColumnName="planType" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="paymentSchemes">
+      <EntityTypeMapping TypeName="PetWhizzModel.paymentScheme">
+        <MappingFragment StoreEntitySet="paymentScheme">
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="isFree" ColumnName="isFree" />
+          <ScalarProperty Name="schemeFee" ColumnName="schemeFee" />
+          <ScalarProperty Name="allowedTransactions" ColumnName="allowedTransactions" />
+          <ScalarProperty Name="schemeName" ColumnName="schemeName" />
+          <ScalarProperty Name="paymentPlanTypeId" ColumnName="paymentPlanTypeId" />
+          <ScalarProperty Name="clinicTypeId" ColumnName="clinicTypeId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pets">
+      <EntityTypeMapping TypeName="PetWhizzModel.pet">
+        <MappingFragment StoreEntitySet="pet">
+          <ScalarProperty Name="lastUpdatedBy" ColumnName="lastUpdatedBy" />
+          <ScalarProperty Name="lastUpdatedTime" ColumnName="lastUpdatedTime" />
+          <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="profileImage" ColumnName="profileImage" />
+          <ScalarProperty Name="coverImage" ColumnName="coverImage" />
+          <ScalarProperty Name="birthDay" ColumnName="birthDay" />
+          <ScalarProperty Name="sex" ColumnName="sex" />
+          <ScalarProperty Name="petName" ColumnName="petName" />
+          <ScalarProperty Name="breedId" ColumnName="breedId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="petOwners">
+      <EntityTypeMapping TypeName="PetWhizzModel.petOwner">
+        <MappingFragment StoreEntitySet="petOwner">
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="enteryDate" ColumnName="enteryDate" />
+          <ScalarProperty Name="acceptedTime" ColumnName="acceptedTime" />
+          <ScalarProperty Name="sharedTime" ColumnName="sharedTime" />
+          <ScalarProperty Name="sharedUserId" ColumnName="sharedUserId" />
+          <ScalarProperty Name="isMainOwner" ColumnName="isMainOwner" />
+          <ScalarProperty Name="petId" ColumnName="petId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="petVetClinics">
+      <EntityTypeMapping TypeName="PetWhizzModel.petVetClinic">
+        <MappingFragment StoreEntitySet="petVetClinic">
+          <ScalarProperty Name="vetClinicId" ColumnName="vetClinicId" />
+          <ScalarProperty Name="petId" ColumnName="petId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="serviceTypes">
+      <EntityTypeMapping TypeName="PetWhizzModel.serviceType">
+        <MappingFragment StoreEntitySet="serviceType">
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="serviceName" ColumnName="serviceName" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="states">
+      <EntityTypeMapping TypeName="PetWhizzModel.state">
+        <MappingFragment StoreEntitySet="state">
+          <ScalarProperty Name="countryId" ColumnName="countryId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="PetWhizzModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="PetWhizzModel.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="lastUpdatedDate" ColumnName="lastUpdatedDate" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="profilePic" ColumnName="profilePic" />
+          <ScalarProperty Name="dateOfBirth" ColumnName="dateOfBirth" />
+          <ScalarProperty Name="middleName" ColumnName="middleName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="postalCode" ColumnName="postalCode" />
+          <ScalarProperty Name="stateId" ColumnName="stateId" />
+          <ScalarProperty Name="addressLine2" ColumnName="addressLine2" />
+          <ScalarProperty Name="addressLine1" ColumnName="addressLine1" />
+          <ScalarProperty Name="mobileNumber" ColumnName="mobileNumber" />
+          <ScalarProperty Name="eMail" ColumnName="eMail" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userDevices">
+      <EntityTypeMapping TypeName="PetWhizzModel.userDevice">
+        <MappingFragment StoreEntitySet="userDevice">
+          <ScalarProperty Name="lastLogin" ColumnName="lastLogin" />
+          <ScalarProperty Name="deviceName" ColumnName="deviceName" />
+          <ScalarProperty Name="deviceId" ColumnName="deviceId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userTokens">
+      <EntityTypeMapping TypeName="PetWhizzModel.userToken">
+        <MappingFragment StoreEntitySet="userToken">
+          <ScalarProperty Name="useCount" ColumnName="useCount" />
+          <ScalarProperty Name="expiryTime" ColumnName="expiryTime" />
+          <ScalarProperty Name="generatedTime" ColumnName="generatedTime" />
+          <ScalarProperty Name="token" ColumnName="token" />
+          <ScalarProperty Name="tokenType" ColumnName="tokenType" />
+          <ScalarProperty Name="userDeviceId" ColumnName="userDeviceId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userVerifications">
+      <EntityTypeMapping TypeName="PetWhizzModel.userVerification">
+        <MappingFragment StoreEntitySet="userVerification">
+          <ScalarProperty Name="isValid" ColumnName="isValid" />
+          <ScalarProperty Name="expiryTime" ColumnName="expiryTime" />
+          <ScalarProperty Name="generatedTime" ColumnName="generatedTime" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="verificationType" ColumnName="verificationType" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vets">
+      <EntityTypeMapping TypeName="PetWhizzModel.vet">
+        <MappingFragment StoreEntitySet="vet">
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="lastUpdatedBy" ColumnName="lastUpdatedBy" />
+          <ScalarProperty Name="lastUpdatedDate" ColumnName="lastUpdatedDate" />
+          <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+          <ScalarProperty Name="profilePicture" ColumnName="profilePicture" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="regNo" ColumnName="regNo" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="vetTypeId" ColumnName="vetTypeId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vetClinics">
+      <EntityTypeMapping TypeName="PetWhizzModel.vetClinic">
+        <MappingFragment StoreEntitySet="vetClinic">
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="clinicId" ColumnName="clinicId" />
+          <ScalarProperty Name="vetId" ColumnName="vetId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vetClinicSchedules">
+      <EntityTypeMapping TypeName="PetWhizzModel.vetClinicSchedule">
+        <MappingFragment StoreEntitySet="vetClinicSchedule">
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="vetClinicId" ColumnName="vetClinicId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vetClinicScheduleSlots">
+      <EntityTypeMapping TypeName="PetWhizzModel.vetClinicScheduleSlot">
+        <MappingFragment StoreEntitySet="vetClinicScheduleSlot">
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="isReserved" ColumnName="isReserved" />
+          <ScalarProperty Name="slotEndsAt" ColumnName="slotEndsAt" />
+          <ScalarProperty Name="slotStartsAt" ColumnName="slotStartsAt" />
+          <ScalarProperty Name="appointmentNumber" ColumnName="appointmentNumber" />
+          <ScalarProperty Name="vetClinicScheduleId" ColumnName="vetClinicScheduleId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vetTypes">
+      <EntityTypeMapping TypeName="PetWhizzModel.vetType">
+        <MappingFragment StoreEntitySet="vetType">
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="vetTypeName" ColumnName="vetTypeName" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="webUsers">
+      <EntityTypeMapping TypeName="PetWhizzModel.webUser">
+        <MappingFragment StoreEntitySet="webUser">
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="clinicId" ColumnName="clinicId" />
+          <ScalarProperty Name="vetId" ColumnName="vetId" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="webUserTypeId" ColumnName="webUserTypeId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="webUserTypes">
+      <EntityTypeMapping TypeName="PetWhizzModel.webUserType">
+        <MappingFragment StoreEntitySet="webUserType">
+          <ScalarProperty Name="userType" ColumnName="userType" />
+          <ScalarProperty Name="userTypeCode" ColumnName="userTypeCode" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,2345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PetWhizzModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="animal">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="animalTypeId" Type="int" />
+          <Property Name="animalName" Type="varchar" MaxLength="255" />
+          <Property Name="callingName" Type="varchar" MaxLength="255" />
+          <Property Name="scientificName" Type="varchar" MaxLength="500" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="entryDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="animalBreed">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="animalId" Type="int" />
+          <Property Name="breedName" Type="nvarchar" MaxLength="500" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="entryDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="animalType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="animalType" Type="varchar" MaxLength="100" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="entryDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="clinic">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="clinicTypeId" Type="int" />
+          <Property Name="clinicName" Type="nvarchar" MaxLength="500" />
+          <Property Name="slogan" Type="nvarchar" MaxLength="500" />
+          <Property Name="addressLine1" Type="varchar" MaxLength="500" />
+          <Property Name="addressLine2" Type="varchar" MaxLength="500" />
+          <Property Name="cityId" Type="int" />
+          <Property Name="gps" Type="geometry" />
+          <Property Name="telephoneNumber" Type="varchar" MaxLength="50" />
+          <Property Name="mobileNumber" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="500" />
+          <Property Name="logo" Type="varchar(max)" />
+          <Property Name="isOpen" Type="bit" />
+          <Property Name="transactionCount" Type="int" />
+          <Property Name="entryDate" Type="datetime" />
+          <Property Name="lastUpdatedDate" Type="datetime" />
+          <Property Name="lastUpdatedBy" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="clinicServiceHours">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="clinicId" Type="int" />
+          <Property Name="day" Type="varchar" MaxLength="50" />
+          <Property Name="openingTime" Type="time" Precision="3" />
+          <Property Name="closingTime" Type="time" Precision="3" />
+        </EntityType>
+        <EntityType Name="clinicServiceRequest">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="requestedTimeSlotId" Type="bigint" />
+          <Property Name="petOwnerId" Type="bigint" />
+          <Property Name="clinicServiceTypeId" Type="int" />
+          <Property Name="requestRemark" Type="varchar(max)" />
+          <Property Name="requestedTime" Type="datetime" />
+          <Property Name="isApproved" Type="bit" />
+          <Property Name="isCompleted" Type="bit" />
+          <Property Name="completedTime" Type="datetime" />
+          <Property Name="isRescheduled" Type="bit" />
+          <Property Name="selfReference" Type="bigint" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="clinicServiceType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="clinicId" Type="int" />
+          <Property Name="serviceTypeId" Type="int" />
+        </EntityType>
+        <EntityType Name="clinicSubscription">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="clinicId" Type="int" />
+          <Property Name="paymentSchemeId" Type="int" />
+          <Property Name="subscribedFrom" Type="datetime" />
+          <Property Name="subscribedTo" Type="datetime" />
+          <Property Name="subscribedUnits" Type="int" />
+          <Property Name="schemeAllowedTransactions" Type="bigint" />
+          <Property Name="subscribedDate" Type="datetime" />
+          <Property Name="schemeFee" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="isCurrent" Type="bit" />
+          <Property Name="isRedeemed" Type="bit" />
+        </EntityType>
+        <EntityType Name="clinicSubscriptionAddon">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="subscriptionId" Type="bigint" />
+          <Property Name="transactionsAllowed" Type="bigint" />
+          <Property Name="addonFee" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="requestedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="clinicSubscriptionStatus">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="clinicId" Type="int" />
+          <Property Name="subscriptionId" Type="bigint" />
+          <Property Name="totalTransactionsAllowed" Type="bigint" />
+          <Property Name="currentTransactionsCount" Type="bigint" />
+          <Property Name="createdDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="clinicType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="sortname" Type="varchar" MaxLength="3" />
+          <Property Name="name" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="ioLogger">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="triggeredTime" Type="datetime" />
+          <Property Name="json" Type="varchar(max)" />
+          <Property Name="url" Type="varchar(max)" />
+          <Property Name="type" Type="varchar" MaxLength="50" />
+          <Property Name="headers" Type="varchar(max)" />
+          <Property Name="userName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="paymentPlanTypes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="planType" Type="varchar" MaxLength="50" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="paymentScheme">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="clinicTypeId" Type="int" />
+          <Property Name="paymentPlanTypeId" Type="int" />
+          <Property Name="schemeName" Type="varchar" MaxLength="500" />
+          <Property Name="allowedTransactions" Type="bigint" />
+          <Property Name="schemeFee" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="isFree" Type="bit" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="pet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="breedId" Type="int" />
+          <Property Name="petName" Type="varchar" MaxLength="255" />
+          <Property Name="sex" Type="varchar" MaxLength="50" />
+          <Property Name="birthDay" Type="date" />
+          <Property Name="coverImage" Type="varchar(max)" />
+          <Property Name="profileImage" Type="varchar(max)" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="isDeleted" Type="bit" />
+          <Property Name="entryDate" Type="datetime" />
+          <Property Name="lastUpdatedTime" Type="datetime" />
+          <Property Name="lastUpdatedBy" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="petOwner">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="int" />
+          <Property Name="petId" Type="bigint" />
+          <Property Name="isMainOwner" Type="bit" />
+          <Property Name="sharedUserId" Type="int" />
+          <Property Name="sharedTime" Type="datetime" />
+          <Property Name="acceptedTime" Type="datetime" />
+          <Property Name="enteryDate" Type="datetime" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="petVetClinic">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="petId" Type="bigint" />
+          <Property Name="vetClinicId" Type="int" />
+        </EntityType>
+        <EntityType Name="serviceType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="serviceName" Type="varchar" MaxLength="255" />
+          <Property Name="description" Type="varchar" MaxLength="500" />
+          <Property Name="code" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="state">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="30" />
+          <Property Name="countryId" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userName" Type="nvarchar" MaxLength="500" />
+          <Property Name="password" Type="nvarchar" MaxLength="500" />
+          <Property Name="eMail" Type="nvarchar" MaxLength="500" />
+          <Property Name="mobileNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="addressLine1" Type="nvarchar" MaxLength="500" />
+          <Property Name="addressLine2" Type="nvarchar" MaxLength="500" />
+          <Property Name="stateId" Type="int" />
+          <Property Name="postalCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="firstName" Type="nvarchar" MaxLength="500" />
+          <Property Name="lastName" Type="nvarchar" MaxLength="500" />
+          <Property Name="middleName" Type="nvarchar" MaxLength="500" />
+          <Property Name="dateOfBirth" Type="datetime" />
+          <Property Name="profilePic" Type="varchar(max)" />
+          <Property Name="status" Type="nvarchar" MaxLength="50" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="lastUpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="userDevice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="deviceId" Type="nvarchar" MaxLength="500" />
+          <Property Name="deviceName" Type="nvarchar" MaxLength="500" />
+          <Property Name="lastLogin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="userToken">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userDeviceId" Type="bigint" Nullable="false" />
+          <Property Name="tokenType" Type="nvarchar" MaxLength="50" />
+          <Property Name="token" Type="nvarchar" MaxLength="500" />
+          <Property Name="generatedTime" Type="datetime" />
+          <Property Name="expiryTime" Type="datetime" />
+          <Property Name="useCount" Type="int" />
+        </EntityType>
+        <EntityType Name="userVerification">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="verificationType" Type="nvarchar" MaxLength="50" />
+          <Property Name="code" Type="nvarchar" MaxLength="50" />
+          <Property Name="generatedTime" Type="datetime" />
+          <Property Name="expiryTime" Type="datetime" />
+          <Property Name="isValid" Type="bit" />
+        </EntityType>
+        <EntityType Name="vet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vetTypeId" Type="int" />
+          <Property Name="firstName" Type="varchar" MaxLength="255" />
+          <Property Name="lastName" Type="varchar" MaxLength="255" />
+          <Property Name="regNo" Type="varchar" MaxLength="255" />
+          <Property Name="email" Type="varchar" MaxLength="255" />
+          <Property Name="telephone" Type="varchar" MaxLength="255" />
+          <Property Name="mobile" Type="varchar" MaxLength="255" />
+          <Property Name="profilePicture" Type="varchar(max)" />
+          <Property Name="entryDate" Type="datetime" />
+          <Property Name="lastUpdatedDate" Type="datetime" />
+          <Property Name="lastUpdatedBy" Type="varchar" MaxLength="255" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="vetClinic">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vetId" Type="int" />
+          <Property Name="clinicId" Type="int" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="vetClinicSchedule">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vetClinicId" Type="int" />
+          <Property Name="date" Type="date" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="vetClinicScheduleSlot">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vetClinicScheduleId" Type="bigint" />
+          <Property Name="appointmentNumber" Type="int" />
+          <Property Name="slotStartsAt" Type="time" Precision="3" />
+          <Property Name="slotEndsAt" Type="time" Precision="3" />
+          <Property Name="isReserved" Type="bit" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="vetType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vetTypeName" Type="varchar" MaxLength="50" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="webUser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="webUserTypeId" Type="int" />
+          <Property Name="username" Type="varchar" MaxLength="255" />
+          <Property Name="password" Type="varchar" MaxLength="500" />
+          <Property Name="email" Type="varchar" MaxLength="500" />
+          <Property Name="vetId" Type="int" />
+          <Property Name="clinicId" Type="int" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="webUserType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userTypeCode" Type="varchar" MaxLength="50" />
+          <Property Name="userType" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK_animal_animalType">
+          <End Role="animalType" Type="Self.animalType" Multiplicity="0..1" />
+          <End Role="animal" Type="Self.animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="animalType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="animal">
+              <PropertyRef Name="animalTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_animalBreed_animal">
+          <End Role="animal" Type="Self.animal" Multiplicity="0..1" />
+          <End Role="animalBreed" Type="Self.animalBreed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="animal">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="animalBreed">
+              <PropertyRef Name="animalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clinic_clinicType">
+          <End Role="clinicType" Type="Self.clinicType" Multiplicity="0..1" />
+          <End Role="clinic" Type="Self.clinic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clinicType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clinic">
+              <PropertyRef Name="clinicTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clinicServiceHours_clinic">
+          <End Role="clinic" Type="Self.clinic" Multiplicity="0..1" />
+          <End Role="clinicServiceHours" Type="Self.clinicServiceHours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clinic">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clinicServiceHours">
+              <PropertyRef Name="clinicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clinicServiceRequest_clinicServiceType">
+          <End Role="clinicServiceType" Type="Self.clinicServiceType" Multiplicity="0..1" />
+          <End Role="clinicServiceRequest" Type="Self.clinicServiceRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clinicServiceType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clinicServiceRequest">
+              <PropertyRef Name="clinicServiceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clinicServiceRequest_petOwner">
+          <End Role="petOwner" Type="Self.petOwner" Multiplicity="0..1" />
+          <End Role="clinicServiceRequest" Type="Self.clinicServiceRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="petOwner">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clinicServiceRequest">
+              <PropertyRef Name="petOwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clinicServiceRequest_vetClinicScheduleSlot">
+          <End Role="vetClinicScheduleSlot" Type="Self.vetClinicScheduleSlot" Multiplicity="0..1" />
+          <End Role="clinicServiceRequest" Type="Self.clinicServiceRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vetClinicScheduleSlot">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clinicServiceRequest">
+              <PropertyRef Name="requestedTimeSlotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clinicServiceType_clinic">
+          <End Role="clinic" Type="Self.clinic" Multiplicity="0..1" />
+          <End Role="clinicServiceType" Type="Self.clinicServiceType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clinic">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clinicServiceType">
+              <PropertyRef Name="clinicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clinicServiceType_serviceType">
+          <End Role="serviceType" Type="Self.serviceType" Multiplicity="0..1" />
+          <End Role="clinicServiceType" Type="Self.clinicServiceType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="serviceType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clinicServiceType">
+              <PropertyRef Name="serviceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clinicStatus_clinic">
+          <End Role="clinic" Type="Self.clinic" Multiplicity="0..1" />
+          <End Role="clinicSubscriptionStatus" Type="Self.clinicSubscriptionStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clinic">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clinicSubscriptionStatus">
+              <PropertyRef Name="clinicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clinicStatus_clinicSubscription">
+          <End Role="clinicSubscription" Type="Self.clinicSubscription" Multiplicity="0..1" />
+          <End Role="clinicSubscriptionStatus" Type="Self.clinicSubscriptionStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clinicSubscription">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clinicSubscriptionStatus">
+              <PropertyRef Name="subscriptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clinicSubscription_clinic">
+          <End Role="clinic" Type="Self.clinic" Multiplicity="0..1" />
+          <End Role="clinicSubscription" Type="Self.clinicSubscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clinic">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clinicSubscription">
+              <PropertyRef Name="clinicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clinicSubscription_paymentScheme">
+          <End Role="paymentScheme" Type="Self.paymentScheme" Multiplicity="0..1" />
+          <End Role="clinicSubscription" Type="Self.clinicSubscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paymentScheme">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clinicSubscription">
+              <PropertyRef Name="paymentSchemeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clinicSubscriptionAddon_clinicSubscription">
+          <End Role="clinicSubscription" Type="Self.clinicSubscription" Multiplicity="0..1" />
+          <End Role="clinicSubscriptionAddon" Type="Self.clinicSubscriptionAddon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clinicSubscription">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clinicSubscriptionAddon">
+              <PropertyRef Name="subscriptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_paymentScheme_clinicType">
+          <End Role="clinicType" Type="Self.clinicType" Multiplicity="0..1" />
+          <End Role="paymentScheme" Type="Self.paymentScheme" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clinicType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="paymentScheme">
+              <PropertyRef Name="clinicTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_paymentScheme_paymentPlanTypes">
+          <End Role="paymentPlanTypes" Type="Self.paymentPlanTypes" Multiplicity="0..1" />
+          <End Role="paymentScheme" Type="Self.paymentScheme" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paymentPlanTypes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="paymentScheme">
+              <PropertyRef Name="paymentPlanTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pet_animalBreed">
+          <End Role="animalBreed" Type="Self.animalBreed" Multiplicity="0..1" />
+          <End Role="pet" Type="Self.pet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="animalBreed">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pet">
+              <PropertyRef Name="breedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_petOwner_pet">
+          <End Role="pet" Type="Self.pet" Multiplicity="0..1" />
+          <End Role="petOwner" Type="Self.petOwner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="petOwner">
+              <PropertyRef Name="petId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_petOwner_user">
+          <End Role="user" Type="Self.user" Multiplicity="0..1" />
+          <End Role="petOwner" Type="Self.petOwner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="petOwner">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_petVetClinic_pet">
+          <End Role="pet" Type="Self.pet" Multiplicity="0..1" />
+          <End Role="petVetClinic" Type="Self.petVetClinic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="petVetClinic">
+              <PropertyRef Name="petId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_petVetClinic_vetClinic">
+          <End Role="vetClinic" Type="Self.vetClinic" Multiplicity="0..1" />
+          <End Role="petVetClinic" Type="Self.petVetClinic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vetClinic">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="petVetClinic">
+              <PropertyRef Name="vetClinicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_state_country">
+          <End Role="country" Type="Self.country" Multiplicity="0..1" />
+          <End Role="state" Type="Self.state" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="state">
+              <PropertyRef Name="countryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_state">
+          <End Role="state" Type="Self.state" Multiplicity="0..1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="stateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_userDevice_user">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="userDevice" Type="Self.userDevice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="userDevice">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_userToken_userDevice">
+          <End Role="userDevice" Type="Self.userDevice" Multiplicity="1" />
+          <End Role="userToken" Type="Self.userToken" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="userDevice">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="userToken">
+              <PropertyRef Name="userDeviceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_userVerification_user">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="userVerification" Type="Self.userVerification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="userVerification">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_vet_vetType">
+          <End Role="vetType" Type="Self.vetType" Multiplicity="0..1" />
+          <End Role="vet" Type="Self.vet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vetType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="vet">
+              <PropertyRef Name="vetTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_vetClinicSchedule_vetClinic">
+          <End Role="vetClinic" Type="Self.vetClinic" Multiplicity="0..1" />
+          <End Role="vetClinicSchedule" Type="Self.vetClinicSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vetClinic">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="vetClinicSchedule">
+              <PropertyRef Name="vetClinicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_vetClinicScheduleSlot_vetClinicSchedule">
+          <End Role="vetClinicSchedule" Type="Self.vetClinicSchedule" Multiplicity="0..1" />
+          <End Role="vetClinicScheduleSlot" Type="Self.vetClinicScheduleSlot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vetClinicSchedule">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="vetClinicScheduleSlot">
+              <PropertyRef Name="vetClinicScheduleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_webUser_clinic">
+          <End Role="clinic" Type="Self.clinic" Multiplicity="0..1" />
+          <End Role="webUser" Type="Self.webUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clinic">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="webUser">
+              <PropertyRef Name="clinicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_webUser_vet">
+          <End Role="vet" Type="Self.vet" Multiplicity="0..1" />
+          <End Role="webUser" Type="Self.webUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="webUser">
+              <PropertyRef Name="vetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_webUser_webUserType">
+          <End Role="webUserType" Type="Self.webUserType" Multiplicity="0..1" />
+          <End Role="webUser" Type="Self.webUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="webUserType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="webUser">
+              <PropertyRef Name="webUserTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PetWhizzModelStoreContainer">
+          <EntitySet Name="animal" EntityType="Self.animal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="animalBreed" EntityType="Self.animalBreed" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="animalType" EntityType="Self.animalType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clinic" EntityType="Self.clinic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clinicServiceHours" EntityType="Self.clinicServiceHours" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clinicServiceRequest" EntityType="Self.clinicServiceRequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clinicServiceType" EntityType="Self.clinicServiceType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clinicSubscription" EntityType="Self.clinicSubscription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clinicSubscriptionAddon" EntityType="Self.clinicSubscriptionAddon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clinicSubscriptionStatus" EntityType="Self.clinicSubscriptionStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clinicType" EntityType="Self.clinicType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="country" EntityType="Self.country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ioLogger" EntityType="Self.ioLogger" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="paymentPlanTypes" EntityType="Self.paymentPlanTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="paymentScheme" EntityType="Self.paymentScheme" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pet" EntityType="Self.pet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="petOwner" EntityType="Self.petOwner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="petVetClinic" EntityType="Self.petVetClinic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="serviceType" EntityType="Self.serviceType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="state" EntityType="Self.state" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="userDevice" EntityType="Self.userDevice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="userToken" EntityType="Self.userToken" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="userVerification" EntityType="Self.userVerification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vet" EntityType="Self.vet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vetClinic" EntityType="Self.vetClinic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vetClinicSchedule" EntityType="Self.vetClinicSchedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vetClinicScheduleSlot" EntityType="Self.vetClinicScheduleSlot" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vetType" EntityType="Self.vetType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="webUser" EntityType="Self.webUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="webUserType" EntityType="Self.webUserType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_animal_animalType" Association="Self.FK_animal_animalType">
+            <End Role="animalType" EntitySet="animalType" />
+            <End Role="animal" EntitySet="animal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_animalBreed_animal" Association="Self.FK_animalBreed_animal">
+            <End Role="animal" EntitySet="animal" />
+            <End Role="animalBreed" EntitySet="animalBreed" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clinic_clinicType" Association="Self.FK_clinic_clinicType">
+            <End Role="clinicType" EntitySet="clinicType" />
+            <End Role="clinic" EntitySet="clinic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clinicServiceHours_clinic" Association="Self.FK_clinicServiceHours_clinic">
+            <End Role="clinic" EntitySet="clinic" />
+            <End Role="clinicServiceHours" EntitySet="clinicServiceHours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clinicServiceRequest_clinicServiceType" Association="Self.FK_clinicServiceRequest_clinicServiceType">
+            <End Role="clinicServiceType" EntitySet="clinicServiceType" />
+            <End Role="clinicServiceRequest" EntitySet="clinicServiceRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clinicServiceRequest_petOwner" Association="Self.FK_clinicServiceRequest_petOwner">
+            <End Role="petOwner" EntitySet="petOwner" />
+            <End Role="clinicServiceRequest" EntitySet="clinicServiceRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clinicServiceRequest_vetClinicScheduleSlot" Association="Self.FK_clinicServiceRequest_vetClinicScheduleSlot">
+            <End Role="vetClinicScheduleSlot" EntitySet="vetClinicScheduleSlot" />
+            <End Role="clinicServiceRequest" EntitySet="clinicServiceRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clinicServiceType_clinic" Association="Self.FK_clinicServiceType_clinic">
+            <End Role="clinic" EntitySet="clinic" />
+            <End Role="clinicServiceType" EntitySet="clinicServiceType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clinicServiceType_serviceType" Association="Self.FK_clinicServiceType_serviceType">
+            <End Role="serviceType" EntitySet="serviceType" />
+            <End Role="clinicServiceType" EntitySet="clinicServiceType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clinicStatus_clinic" Association="Self.FK_clinicStatus_clinic">
+            <End Role="clinic" EntitySet="clinic" />
+            <End Role="clinicSubscriptionStatus" EntitySet="clinicSubscriptionStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clinicStatus_clinicSubscription" Association="Self.FK_clinicStatus_clinicSubscription">
+            <End Role="clinicSubscription" EntitySet="clinicSubscription" />
+            <End Role="clinicSubscriptionStatus" EntitySet="clinicSubscriptionStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clinicSubscription_clinic" Association="Self.FK_clinicSubscription_clinic">
+            <End Role="clinic" EntitySet="clinic" />
+            <End Role="clinicSubscription" EntitySet="clinicSubscription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clinicSubscription_paymentScheme" Association="Self.FK_clinicSubscription_paymentScheme">
+            <End Role="paymentScheme" EntitySet="paymentScheme" />
+            <End Role="clinicSubscription" EntitySet="clinicSubscription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clinicSubscriptionAddon_clinicSubscription" Association="Self.FK_clinicSubscriptionAddon_clinicSubscription">
+            <End Role="clinicSubscription" EntitySet="clinicSubscription" />
+            <End Role="clinicSubscriptionAddon" EntitySet="clinicSubscriptionAddon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_paymentScheme_clinicType" Association="Self.FK_paymentScheme_clinicType">
+            <End Role="clinicType" EntitySet="clinicType" />
+            <End Role="paymentScheme" EntitySet="paymentScheme" />
+          </AssociationSet>
+          <AssociationSet Name="FK_paymentScheme_paymentPlanTypes" Association="Self.FK_paymentScheme_paymentPlanTypes">
+            <End Role="paymentPlanTypes" EntitySet="paymentPlanTypes" />
+            <End Role="paymentScheme" EntitySet="paymentScheme" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pet_animalBreed" Association="Self.FK_pet_animalBreed">
+            <End Role="animalBreed" EntitySet="animalBreed" />
+            <End Role="pet" EntitySet="pet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_petOwner_pet" Association="Self.FK_petOwner_pet">
+            <End Role="pet" EntitySet="pet" />
+            <End Role="petOwner" EntitySet="petOwner" />
+          </AssociationSet>
+          <AssociationSet Name="FK_petOwner_user" Association="Self.FK_petOwner_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="petOwner" EntitySet="petOwner" />
+          </AssociationSet>
+          <AssociationSet Name="FK_petVetClinic_pet" Association="Self.FK_petVetClinic_pet">
+            <End Role="pet" EntitySet="pet" />
+            <End Role="petVetClinic" EntitySet="petVetClinic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_petVetClinic_vetClinic" Association="Self.FK_petVetClinic_vetClinic">
+            <End Role="vetClinic" EntitySet="vetClinic" />
+            <End Role="petVetClinic" EntitySet="petVetClinic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_state_country" Association="Self.FK_state_country">
+            <End Role="country" EntitySet="country" />
+            <End Role="state" EntitySet="state" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_state" Association="Self.FK_user_state">
+            <End Role="state" EntitySet="state" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+          <AssociationSet Name="FK_userDevice_user" Association="Self.FK_userDevice_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="userDevice" EntitySet="userDevice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_userToken_userDevice" Association="Self.FK_userToken_userDevice">
+            <End Role="userDevice" EntitySet="userDevice" />
+            <End Role="userToken" EntitySet="userToken" />
+          </AssociationSet>
+          <AssociationSet Name="FK_userVerification_user" Association="Self.FK_userVerification_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="userVerification" EntitySet="userVerification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_vet_vetType" Association="Self.FK_vet_vetType">
+            <End Role="vetType" EntitySet="vetType" />
+            <End Role="vet" EntitySet="vet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_vetClinicSchedule_vetClinic" Association="Self.FK_vetClinicSchedule_vetClinic">
+            <End Role="vetClinic" EntitySet="vetClinic" />
+            <End Role="vetClinicSchedule" EntitySet="vetClinicSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_vetClinicScheduleSlot_vetClinicSchedule" Association="Self.FK_vetClinicScheduleSlot_vetClinicSchedule">
+            <End Role="vetClinicSchedule" EntitySet="vetClinicSchedule" />
+            <End Role="vetClinicScheduleSlot" EntitySet="vetClinicScheduleSlot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_webUser_clinic" Association="Self.FK_webUser_clinic">
+            <End Role="clinic" EntitySet="clinic" />
+            <End Role="webUser" EntitySet="webUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_webUser_vet" Association="Self.FK_webUser_vet">
+            <End Role="vet" EntitySet="vet" />
+            <End Role="webUser" EntitySet="webUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_webUser_webUserType" Association="Self.FK_webUser_webUserType">
+            <End Role="webUserType" EntitySet="webUserType" />
+            <End Role="webUser" EntitySet="webUser" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PetWhizzModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PetWhizzEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="animals" EntityType="PetWhizzModel.animal" />
+          <EntitySet Name="animalBreeds" EntityType="PetWhizzModel.animalBreed" />
+          <EntitySet Name="animalTypes" EntityType="PetWhizzModel.animalType" />
+          <EntitySet Name="clinics" EntityType="PetWhizzModel.clinic" />
+          <EntitySet Name="clinicServiceHours" EntityType="PetWhizzModel.clinicServiceHour" />
+          <EntitySet Name="clinicServiceRequests" EntityType="PetWhizzModel.clinicServiceRequest" />
+          <EntitySet Name="clinicServiceTypes" EntityType="PetWhizzModel.clinicServiceType" />
+          <EntitySet Name="clinicSubscriptions" EntityType="PetWhizzModel.clinicSubscription" />
+          <EntitySet Name="clinicSubscriptionAddons" EntityType="PetWhizzModel.clinicSubscriptionAddon" />
+          <EntitySet Name="clinicSubscriptionStatus" EntityType="PetWhizzModel.clinicSubscriptionStatu" />
+          <EntitySet Name="clinicTypes" EntityType="PetWhizzModel.clinicType" />
+          <EntitySet Name="countries" EntityType="PetWhizzModel.country" />
+          <EntitySet Name="ioLoggers" EntityType="PetWhizzModel.ioLogger" />
+          <EntitySet Name="paymentPlanTypes" EntityType="PetWhizzModel.paymentPlanType" />
+          <EntitySet Name="paymentSchemes" EntityType="PetWhizzModel.paymentScheme" />
+          <EntitySet Name="pets" EntityType="PetWhizzModel.pet" />
+          <EntitySet Name="petOwners" EntityType="PetWhizzModel.petOwner" />
+          <EntitySet Name="petVetClinics" EntityType="PetWhizzModel.petVetClinic" />
+          <EntitySet Name="serviceTypes" EntityType="PetWhizzModel.serviceType" />
+          <EntitySet Name="states" EntityType="PetWhizzModel.state" />
+          <EntitySet Name="sysdiagrams" EntityType="PetWhizzModel.sysdiagram" />
+          <EntitySet Name="users" EntityType="PetWhizzModel.user" />
+          <EntitySet Name="userDevices" EntityType="PetWhizzModel.userDevice" />
+          <EntitySet Name="userTokens" EntityType="PetWhizzModel.userToken" />
+          <EntitySet Name="userVerifications" EntityType="PetWhizzModel.userVerification" />
+          <EntitySet Name="vets" EntityType="PetWhizzModel.vet" />
+          <EntitySet Name="vetClinics" EntityType="PetWhizzModel.vetClinic" />
+          <EntitySet Name="vetClinicSchedules" EntityType="PetWhizzModel.vetClinicSchedule" />
+          <EntitySet Name="vetClinicScheduleSlots" EntityType="PetWhizzModel.vetClinicScheduleSlot" />
+          <EntitySet Name="vetTypes" EntityType="PetWhizzModel.vetType" />
+          <EntitySet Name="webUsers" EntityType="PetWhizzModel.webUser" />
+          <EntitySet Name="webUserTypes" EntityType="PetWhizzModel.webUserType" />
+          <AssociationSet Name="FK_animal_animalType" Association="PetWhizzModel.FK_animal_animalType">
+            <End Role="animalType" EntitySet="animalTypes" />
+            <End Role="animal" EntitySet="animals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_animalBreed_animal" Association="PetWhizzModel.FK_animalBreed_animal">
+            <End Role="animal" EntitySet="animals" />
+            <End Role="animalBreed" EntitySet="animalBreeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pet_animalBreed" Association="PetWhizzModel.FK_pet_animalBreed">
+            <End Role="animalBreed" EntitySet="animalBreeds" />
+            <End Role="pet" EntitySet="pets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clinic_clinicType" Association="PetWhizzModel.FK_clinic_clinicType">
+            <End Role="clinicType" EntitySet="clinicTypes" />
+            <End Role="clinic" EntitySet="clinics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clinicServiceHours_clinic" Association="PetWhizzModel.FK_clinicServiceHours_clinic">
+            <End Role="clinic" EntitySet="clinics" />
+            <End Role="clinicServiceHour" EntitySet="clinicServiceHours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clinicServiceType_clinic" Association="PetWhizzModel.FK_clinicServiceType_clinic">
+            <End Role="clinic" EntitySet="clinics" />
+            <End Role="clinicServiceType" EntitySet="clinicServiceTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clinicStatus_clinic" Association="PetWhizzModel.FK_clinicStatus_clinic">
+            <End Role="clinic" EntitySet="clinics" />
+            <End Role="clinicSubscriptionStatu" EntitySet="clinicSubscriptionStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clinicSubscription_clinic" Association="PetWhizzModel.FK_clinicSubscription_clinic">
+            <End Role="clinic" EntitySet="clinics" />
+            <End Role="clinicSubscription" EntitySet="clinicSubscriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_webUser_clinic" Association="PetWhizzModel.FK_webUser_clinic">
+            <End Role="clinic" EntitySet="clinics" />
+            <End Role="webUser" EntitySet="webUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clinicServiceRequest_clinicServiceType" Association="PetWhizzModel.FK_clinicServiceRequest_clinicServiceType">
+            <End Role="clinicServiceType" EntitySet="clinicServiceTypes" />
+            <End Role="clinicServiceRequest" EntitySet="clinicServiceRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clinicServiceRequest_petOwner" Association="PetWhizzModel.FK_clinicServiceRequest_petOwner">
+            <End Role="petOwner" EntitySet="petOwners" />
+            <End Role="clinicServiceRequest" EntitySet="clinicServiceRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clinicServiceRequest_vetClinicScheduleSlot" Association="PetWhizzModel.FK_clinicServiceRequest_vetClinicScheduleSlot">
+            <End Role="vetClinicScheduleSlot" EntitySet="vetClinicScheduleSlots" />
+            <End Role="clinicServiceRequest" EntitySet="clinicServiceRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clinicServiceType_serviceType" Association="PetWhizzModel.FK_clinicServiceType_serviceType">
+            <End Role="serviceType" EntitySet="serviceTypes" />
+            <End Role="clinicServiceType" EntitySet="clinicServiceTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clinicStatus_clinicSubscription" Association="PetWhizzModel.FK_clinicStatus_clinicSubscription">
+            <End Role="clinicSubscription" EntitySet="clinicSubscriptions" />
+            <End Role="clinicSubscriptionStatu" EntitySet="clinicSubscriptionStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clinicSubscription_paymentScheme" Association="PetWhizzModel.FK_clinicSubscription_paymentScheme">
+            <End Role="paymentScheme" EntitySet="paymentSchemes" />
+            <End Role="clinicSubscription" EntitySet="clinicSubscriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clinicSubscriptionAddon_clinicSubscription" Association="PetWhizzModel.FK_clinicSubscriptionAddon_clinicSubscription">
+            <End Role="clinicSubscription" EntitySet="clinicSubscriptions" />
+            <End Role="clinicSubscriptionAddon" EntitySet="clinicSubscriptionAddons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_paymentScheme_clinicType" Association="PetWhizzModel.FK_paymentScheme_clinicType">
+            <End Role="clinicType" EntitySet="clinicTypes" />
+            <End Role="paymentScheme" EntitySet="paymentSchemes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_state_country" Association="PetWhizzModel.FK_state_country">
+            <End Role="country" EntitySet="countries" />
+            <End Role="state" EntitySet="states" />
+          </AssociationSet>
+          <AssociationSet Name="FK_paymentScheme_paymentPlanTypes" Association="PetWhizzModel.FK_paymentScheme_paymentPlanTypes">
+            <End Role="paymentPlanType" EntitySet="paymentPlanTypes" />
+            <End Role="paymentScheme" EntitySet="paymentSchemes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_petOwner_pet" Association="PetWhizzModel.FK_petOwner_pet">
+            <End Role="pet" EntitySet="pets" />
+            <End Role="petOwner" EntitySet="petOwners" />
+          </AssociationSet>
+          <AssociationSet Name="FK_petVetClinic_pet" Association="PetWhizzModel.FK_petVetClinic_pet">
+            <End Role="pet" EntitySet="pets" />
+            <End Role="petVetClinic" EntitySet="petVetClinics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_petOwner_user" Association="PetWhizzModel.FK_petOwner_user">
+            <End Role="user" EntitySet="users" />
+            <End Role="petOwner" EntitySet="petOwners" />
+          </AssociationSet>
+          <AssociationSet Name="FK_petVetClinic_vetClinic" Association="PetWhizzModel.FK_petVetClinic_vetClinic">
+            <End Role="vetClinic" EntitySet="vetClinics" />
+            <End Role="petVetClinic" EntitySet="petVetClinics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_state" Association="PetWhizzModel.FK_user_state">
+            <End Role="state" EntitySet="states" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_userDevice_user" Association="PetWhizzModel.FK_userDevice_user">
+            <End Role="user" EntitySet="users" />
+            <End Role="userDevice" EntitySet="userDevices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_userVerification_user" Association="PetWhizzModel.FK_userVerification_user">
+            <End Role="user" EntitySet="users" />
+            <End Role="userVerification" EntitySet="userVerifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_userToken_userDevice" Association="PetWhizzModel.FK_userToken_userDevice">
+            <End Role="userDevice" EntitySet="userDevices" />
+            <End Role="userToken" EntitySet="userTokens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_vet_vetType" Association="PetWhizzModel.FK_vet_vetType">
+            <End Role="vetType" EntitySet="vetTypes" />
+            <End Role="vet" EntitySet="vets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_webUser_vet" Association="PetWhizzModel.FK_webUser_vet">
+            <End Role="vet" EntitySet="vets" />
+            <End Role="webUser" EntitySet="webUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_vetClinicSchedule_vetClinic" Association="PetWhizzModel.FK_vetClinicSchedule_vetClinic">
+            <End Role="vetClinic" EntitySet="vetClinics" />
+            <End Role="vetClinicSchedule" EntitySet="vetClinicSchedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_vetClinicScheduleSlot_vetClinicSchedule" Association="PetWhizzModel.FK_vetClinicScheduleSlot_vetClinicSchedule">
+            <End Role="vetClinicSchedule" EntitySet="vetClinicSchedules" />
+            <End Role="vetClinicScheduleSlot" EntitySet="vetClinicScheduleSlots" />
+          </AssociationSet>
+          <AssociationSet Name="FK_webUser_webUserType" Association="PetWhizzModel.FK_webUser_webUserType">
+            <End Role="webUserType" EntitySet="webUserTypes" />
+            <End Role="webUser" EntitySet="webUsers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="animal">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="animalTypeId" Type="Int32" />
+          <Property Name="animalName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="callingName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="scientificName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="entryDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="animalType" Relationship="PetWhizzModel.FK_animal_animalType" FromRole="animal" ToRole="animalType" />
+          <NavigationProperty Name="animalBreeds" Relationship="PetWhizzModel.FK_animalBreed_animal" FromRole="animal" ToRole="animalBreed" />
+        </EntityType>
+        <EntityType Name="animalBreed">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="animalId" Type="Int32" />
+          <Property Name="breedName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="entryDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="animal" Relationship="PetWhizzModel.FK_animalBreed_animal" FromRole="animalBreed" ToRole="animal" />
+          <NavigationProperty Name="pets" Relationship="PetWhizzModel.FK_pet_animalBreed" FromRole="animalBreed" ToRole="pet" />
+        </EntityType>
+        <EntityType Name="animalType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="animalType1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="entryDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="animals" Relationship="PetWhizzModel.FK_animal_animalType" FromRole="animalType" ToRole="animal" />
+        </EntityType>
+        <EntityType Name="clinic">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="clinicTypeId" Type="Int32" />
+          <Property Name="clinicName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="slogan" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="addressLine1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="addressLine2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="cityId" Type="Int32" />
+          <Property Name="gps" Type="Geometry" />
+          <Property Name="telephoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="isOpen" Type="Boolean" />
+          <Property Name="transactionCount" Type="Int32" />
+          <Property Name="entryDate" Type="DateTime" Precision="3" />
+          <Property Name="lastUpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="lastUpdatedBy" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="clinicType" Relationship="PetWhizzModel.FK_clinic_clinicType" FromRole="clinic" ToRole="clinicType" />
+          <NavigationProperty Name="clinicServiceHours" Relationship="PetWhizzModel.FK_clinicServiceHours_clinic" FromRole="clinic" ToRole="clinicServiceHour" />
+          <NavigationProperty Name="clinicServiceTypes" Relationship="PetWhizzModel.FK_clinicServiceType_clinic" FromRole="clinic" ToRole="clinicServiceType" />
+          <NavigationProperty Name="clinicSubscriptionStatus" Relationship="PetWhizzModel.FK_clinicStatus_clinic" FromRole="clinic" ToRole="clinicSubscriptionStatu" />
+          <NavigationProperty Name="clinicSubscriptions" Relationship="PetWhizzModel.FK_clinicSubscription_clinic" FromRole="clinic" ToRole="clinicSubscription" />
+          <NavigationProperty Name="webUsers" Relationship="PetWhizzModel.FK_webUser_clinic" FromRole="clinic" ToRole="webUser" />
+        </EntityType>
+        <EntityType Name="clinicServiceHour">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="clinicId" Type="Int32" />
+          <Property Name="day" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="openingTime" Type="Time" Precision="3" />
+          <Property Name="closingTime" Type="Time" Precision="3" />
+          <NavigationProperty Name="clinic" Relationship="PetWhizzModel.FK_clinicServiceHours_clinic" FromRole="clinicServiceHour" ToRole="clinic" />
+        </EntityType>
+        <EntityType Name="clinicServiceRequest">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="requestedTimeSlotId" Type="Int64" />
+          <Property Name="petOwnerId" Type="Int64" />
+          <Property Name="clinicServiceTypeId" Type="Int32" />
+          <Property Name="requestRemark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="requestedTime" Type="DateTime" Precision="3" />
+          <Property Name="isApproved" Type="Boolean" />
+          <Property Name="isCompleted" Type="Boolean" />
+          <Property Name="completedTime" Type="DateTime" Precision="3" />
+          <Property Name="isRescheduled" Type="Boolean" />
+          <Property Name="selfReference" Type="Int64" />
+          <Property Name="isActive" Type="Boolean" />
+          <NavigationProperty Name="clinicServiceType" Relationship="PetWhizzModel.FK_clinicServiceRequest_clinicServiceType" FromRole="clinicServiceRequest" ToRole="clinicServiceType" />
+          <NavigationProperty Name="petOwner" Relationship="PetWhizzModel.FK_clinicServiceRequest_petOwner" FromRole="clinicServiceRequest" ToRole="petOwner" />
+          <NavigationProperty Name="vetClinicScheduleSlot" Relationship="PetWhizzModel.FK_clinicServiceRequest_vetClinicScheduleSlot" FromRole="clinicServiceRequest" ToRole="vetClinicScheduleSlot" />
+        </EntityType>
+        <EntityType Name="clinicServiceType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="clinicId" Type="Int32" />
+          <Property Name="serviceTypeId" Type="Int32" />
+          <NavigationProperty Name="clinic" Relationship="PetWhizzModel.FK_clinicServiceType_clinic" FromRole="clinicServiceType" ToRole="clinic" />
+          <NavigationProperty Name="clinicServiceRequests" Relationship="PetWhizzModel.FK_clinicServiceRequest_clinicServiceType" FromRole="clinicServiceType" ToRole="clinicServiceRequest" />
+          <NavigationProperty Name="serviceType" Relationship="PetWhizzModel.FK_clinicServiceType_serviceType" FromRole="clinicServiceType" ToRole="serviceType" />
+        </EntityType>
+        <EntityType Name="clinicSubscription">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="clinicId" Type="Int32" />
+          <Property Name="paymentSchemeId" Type="Int32" />
+          <Property Name="subscribedFrom" Type="DateTime" Precision="3" />
+          <Property Name="subscribedTo" Type="DateTime" Precision="3" />
+          <Property Name="subscribedUnits" Type="Int32" />
+          <Property Name="schemeAllowedTransactions" Type="Int64" />
+          <Property Name="subscribedDate" Type="DateTime" Precision="3" />
+          <Property Name="schemeFee" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="isCurrent" Type="Boolean" />
+          <Property Name="isRedeemed" Type="Boolean" />
+          <NavigationProperty Name="clinic" Relationship="PetWhizzModel.FK_clinicSubscription_clinic" FromRole="clinicSubscription" ToRole="clinic" />
+          <NavigationProperty Name="clinicSubscriptionStatus" Relationship="PetWhizzModel.FK_clinicStatus_clinicSubscription" FromRole="clinicSubscription" ToRole="clinicSubscriptionStatu" />
+          <NavigationProperty Name="paymentScheme" Relationship="PetWhizzModel.FK_clinicSubscription_paymentScheme" FromRole="clinicSubscription" ToRole="paymentScheme" />
+          <NavigationProperty Name="clinicSubscriptionAddons" Relationship="PetWhizzModel.FK_clinicSubscriptionAddon_clinicSubscription" FromRole="clinicSubscription" ToRole="clinicSubscriptionAddon" />
+        </EntityType>
+        <EntityType Name="clinicSubscriptionAddon">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="subscriptionId" Type="Int64" />
+          <Property Name="transactionsAllowed" Type="Int64" />
+          <Property Name="addonFee" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="requestedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="clinicSubscription" Relationship="PetWhizzModel.FK_clinicSubscriptionAddon_clinicSubscription" FromRole="clinicSubscriptionAddon" ToRole="clinicSubscription" />
+        </EntityType>
+        <EntityType Name="clinicSubscriptionStatu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="clinicId" Type="Int32" />
+          <Property Name="subscriptionId" Type="Int64" />
+          <Property Name="totalTransactionsAllowed" Type="Int64" />
+          <Property Name="currentTransactionsCount" Type="Int64" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="clinic" Relationship="PetWhizzModel.FK_clinicStatus_clinic" FromRole="clinicSubscriptionStatu" ToRole="clinic" />
+          <NavigationProperty Name="clinicSubscription" Relationship="PetWhizzModel.FK_clinicStatus_clinicSubscription" FromRole="clinicSubscriptionStatu" ToRole="clinicSubscription" />
+        </EntityType>
+        <EntityType Name="clinicType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="clinics" Relationship="PetWhizzModel.FK_clinic_clinicType" FromRole="clinicType" ToRole="clinic" />
+          <NavigationProperty Name="paymentSchemes" Relationship="PetWhizzModel.FK_paymentScheme_clinicType" FromRole="clinicType" ToRole="paymentScheme" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="sortname" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="states" Relationship="PetWhizzModel.FK_state_country" FromRole="country" ToRole="state" />
+        </EntityType>
+        <EntityType Name="ioLogger">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="triggeredTime" Type="DateTime" Precision="3" />
+          <Property Name="json" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="headers" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="paymentPlanType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="planType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" />
+          <NavigationProperty Name="paymentSchemes" Relationship="PetWhizzModel.FK_paymentScheme_paymentPlanTypes" FromRole="paymentPlanType" ToRole="paymentScheme" />
+        </EntityType>
+        <EntityType Name="paymentScheme">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="clinicTypeId" Type="Int32" />
+          <Property Name="paymentPlanTypeId" Type="Int32" />
+          <Property Name="schemeName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="allowedTransactions" Type="Int64" />
+          <Property Name="schemeFee" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="isFree" Type="Boolean" />
+          <Property Name="isActive" Type="Boolean" />
+          <NavigationProperty Name="clinicSubscriptions" Relationship="PetWhizzModel.FK_clinicSubscription_paymentScheme" FromRole="paymentScheme" ToRole="clinicSubscription" />
+          <NavigationProperty Name="clinicType" Relationship="PetWhizzModel.FK_paymentScheme_clinicType" FromRole="paymentScheme" ToRole="clinicType" />
+          <NavigationProperty Name="paymentPlanType" Relationship="PetWhizzModel.FK_paymentScheme_paymentPlanTypes" FromRole="paymentScheme" ToRole="paymentPlanType" />
+        </EntityType>
+        <EntityType Name="pet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="breedId" Type="Int32" />
+          <Property Name="petName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="sex" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="birthDay" Type="DateTime" Precision="0" />
+          <Property Name="coverImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="profileImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="isDeleted" Type="Boolean" />
+          <Property Name="entryDate" Type="DateTime" Precision="3" />
+          <Property Name="lastUpdatedTime" Type="DateTime" Precision="3" />
+          <Property Name="lastUpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="animalBreed" Relationship="PetWhizzModel.FK_pet_animalBreed" FromRole="pet" ToRole="animalBreed" />
+          <NavigationProperty Name="petOwners" Relationship="PetWhizzModel.FK_petOwner_pet" FromRole="pet" ToRole="petOwner" />
+          <NavigationProperty Name="petVetClinics" Relationship="PetWhizzModel.FK_petVetClinic_pet" FromRole="pet" ToRole="petVetClinic" />
+        </EntityType>
+        <EntityType Name="petOwner">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int32" />
+          <Property Name="petId" Type="Int64" />
+          <Property Name="isMainOwner" Type="Boolean" />
+          <Property Name="sharedUserId" Type="Int32" />
+          <Property Name="sharedTime" Type="DateTime" Precision="3" />
+          <Property Name="acceptedTime" Type="DateTime" Precision="3" />
+          <Property Name="enteryDate" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Boolean" />
+          <NavigationProperty Name="clinicServiceRequests" Relationship="PetWhizzModel.FK_clinicServiceRequest_petOwner" FromRole="petOwner" ToRole="clinicServiceRequest" />
+          <NavigationProperty Name="pet" Relationship="PetWhizzModel.FK_petOwner_pet" FromRole="petOwner" ToRole="pet" />
+          <NavigationProperty Name="user" Relationship="PetWhizzModel.FK_petOwner_user" FromRole="petOwner" ToRole="user" />
+        </EntityType>
+        <EntityType Name="petVetClinic">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="petId" Type="Int64" />
+          <Property Name="vetClinicId" Type="Int32" />
+          <NavigationProperty Name="pet" Relationship="PetWhizzModel.FK_petVetClinic_pet" FromRole="petVetClinic" ToRole="pet" />
+          <NavigationProperty Name="vetClinic" Relationship="PetWhizzModel.FK_petVetClinic_vetClinic" FromRole="petVetClinic" ToRole="vetClinic" />
+        </EntityType>
+        <EntityType Name="serviceType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="serviceName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="clinicServiceTypes" Relationship="PetWhizzModel.FK_clinicServiceType_serviceType" FromRole="serviceType" ToRole="clinicServiceType" />
+        </EntityType>
+        <EntityType Name="state">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="countryId" Type="Int32" />
+          <NavigationProperty Name="country" Relationship="PetWhizzModel.FK_state_country" FromRole="state" ToRole="country" />
+          <NavigationProperty Name="users" Relationship="PetWhizzModel.FK_user_state" FromRole="state" ToRole="user" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="eMail" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="mobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="addressLine1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="addressLine2" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="stateId" Type="Int32" />
+          <Property Name="postalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="firstName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="lastName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="middleName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="dateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="profilePic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="lastUpdatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="petOwners" Relationship="PetWhizzModel.FK_petOwner_user" FromRole="user" ToRole="petOwner" />
+          <NavigationProperty Name="state" Relationship="PetWhizzModel.FK_user_state" FromRole="user" ToRole="state" />
+          <NavigationProperty Name="userDevices" Relationship="PetWhizzModel.FK_userDevice_user" FromRole="user" ToRole="userDevice" />
+          <NavigationProperty Name="userVerifications" Relationship="PetWhizzModel.FK_userVerification_user" FromRole="user" ToRole="userVerification" />
+        </EntityType>
+        <EntityType Name="userDevice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="deviceId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="deviceName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="lastLogin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="user" Relationship="PetWhizzModel.FK_userDevice_user" FromRole="userDevice" ToRole="user" />
+          <NavigationProperty Name="userTokens" Relationship="PetWhizzModel.FK_userToken_userDevice" FromRole="userDevice" ToRole="userToken" />
+        </EntityType>
+        <EntityType Name="userToken">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userDeviceId" Type="Int64" Nullable="false" />
+          <Property Name="tokenType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="token" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="generatedTime" Type="DateTime" Precision="3" />
+          <Property Name="expiryTime" Type="DateTime" Precision="3" />
+          <Property Name="useCount" Type="Int32" />
+          <NavigationProperty Name="userDevice" Relationship="PetWhizzModel.FK_userToken_userDevice" FromRole="userToken" ToRole="userDevice" />
+        </EntityType>
+        <EntityType Name="userVerification">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="verificationType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="generatedTime" Type="DateTime" Precision="3" />
+          <Property Name="expiryTime" Type="DateTime" Precision="3" />
+          <Property Name="isValid" Type="Boolean" />
+          <NavigationProperty Name="user" Relationship="PetWhizzModel.FK_userVerification_user" FromRole="userVerification" ToRole="user" />
+        </EntityType>
+        <EntityType Name="vet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vetTypeId" Type="Int32" />
+          <Property Name="firstName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="lastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="regNo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="telephone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="mobile" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="profilePicture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="entryDate" Type="DateTime" Precision="3" />
+          <Property Name="lastUpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="lastUpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" />
+          <NavigationProperty Name="vetType" Relationship="PetWhizzModel.FK_vet_vetType" FromRole="vet" ToRole="vetType" />
+          <NavigationProperty Name="webUsers" Relationship="PetWhizzModel.FK_webUser_vet" FromRole="vet" ToRole="webUser" />
+        </EntityType>
+        <EntityType Name="vetClinic">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vetId" Type="Int32" />
+          <Property Name="clinicId" Type="Int32" />
+          <Property Name="isActive" Type="Boolean" />
+          <NavigationProperty Name="petVetClinics" Relationship="PetWhizzModel.FK_petVetClinic_vetClinic" FromRole="vetClinic" ToRole="petVetClinic" />
+          <NavigationProperty Name="vetClinicSchedules" Relationship="PetWhizzModel.FK_vetClinicSchedule_vetClinic" FromRole="vetClinic" ToRole="vetClinicSchedule" />
+        </EntityType>
+        <EntityType Name="vetClinicSchedule">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vetClinicId" Type="Int32" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="isActive" Type="Boolean" />
+          <NavigationProperty Name="vetClinic" Relationship="PetWhizzModel.FK_vetClinicSchedule_vetClinic" FromRole="vetClinicSchedule" ToRole="vetClinic" />
+          <NavigationProperty Name="vetClinicScheduleSlots" Relationship="PetWhizzModel.FK_vetClinicScheduleSlot_vetClinicSchedule" FromRole="vetClinicSchedule" ToRole="vetClinicScheduleSlot" />
+        </EntityType>
+        <EntityType Name="vetClinicScheduleSlot">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vetClinicScheduleId" Type="Int64" />
+          <Property Name="appointmentNumber" Type="Int32" />
+          <Property Name="slotStartsAt" Type="Time" Precision="3" />
+          <Property Name="slotEndsAt" Type="Time" Precision="3" />
+          <Property Name="isReserved" Type="Boolean" />
+          <Property Name="isActive" Type="Boolean" />
+          <NavigationProperty Name="clinicServiceRequests" Relationship="PetWhizzModel.FK_clinicServiceRequest_vetClinicScheduleSlot" FromRole="vetClinicScheduleSlot" ToRole="clinicServiceRequest" />
+          <NavigationProperty Name="vetClinicSchedule" Relationship="PetWhizzModel.FK_vetClinicScheduleSlot_vetClinicSchedule" FromRole="vetClinicScheduleSlot" ToRole="vetClinicSchedule" />
+        </EntityType>
+        <EntityType Name="vetType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vetTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" />
+          <NavigationProperty Name="vets" Relationship="PetWhizzModel.FK_vet_vetType" FromRole="vetType" ToRole="vet" />
+        </EntityType>
+        <EntityType Name="webUser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="webUserTypeId" Type="Int32" />
+          <Property Name="username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="vetId" Type="Int32" />
+          <Property Name="clinicId" Type="Int32" />
+          <Property Name="isActive" Type="Boolean" />
+          <NavigationProperty Name="clinic" Relationship="PetWhizzModel.FK_webUser_clinic" FromRole="webUser" ToRole="clinic" />
+          <NavigationProperty Name="vet" Relationship="PetWhizzModel.FK_webUser_vet" FromRole="webUser" ToRole="vet" />
+          <NavigationProperty Name="webUserType" Relationship="PetWhizzModel.FK_webUser_webUserType" FromRole="webUser" ToRole="webUserType" />
+        </EntityType>
+        <EntityType Name="webUserType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="userType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="webUsers" Relationship="PetWhizzModel.FK_webUser_webUserType" FromRole="webUserType" ToRole="webUser" />
+        </EntityType>
+        <Association Name="FK_animal_animalType">
+          <End Type="PetWhizzModel.animalType" Role="animalType" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.animal" Role="animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="animalType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="animal">
+              <PropertyRef Name="animalTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_animalBreed_animal">
+          <End Type="PetWhizzModel.animal" Role="animal" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.animalBreed" Role="animalBreed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="animal">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="animalBreed">
+              <PropertyRef Name="animalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pet_animalBreed">
+          <End Type="PetWhizzModel.animalBreed" Role="animalBreed" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.pet" Role="pet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="animalBreed">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pet">
+              <PropertyRef Name="breedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clinic_clinicType">
+          <End Type="PetWhizzModel.clinicType" Role="clinicType" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.clinic" Role="clinic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clinicType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clinic">
+              <PropertyRef Name="clinicTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clinicServiceHours_clinic">
+          <End Type="PetWhizzModel.clinic" Role="clinic" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.clinicServiceHour" Role="clinicServiceHour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clinic">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clinicServiceHour">
+              <PropertyRef Name="clinicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clinicServiceType_clinic">
+          <End Type="PetWhizzModel.clinic" Role="clinic" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.clinicServiceType" Role="clinicServiceType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clinic">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clinicServiceType">
+              <PropertyRef Name="clinicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clinicStatus_clinic">
+          <End Type="PetWhizzModel.clinic" Role="clinic" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.clinicSubscriptionStatu" Role="clinicSubscriptionStatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clinic">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clinicSubscriptionStatu">
+              <PropertyRef Name="clinicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clinicSubscription_clinic">
+          <End Type="PetWhizzModel.clinic" Role="clinic" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.clinicSubscription" Role="clinicSubscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clinic">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clinicSubscription">
+              <PropertyRef Name="clinicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_webUser_clinic">
+          <End Type="PetWhizzModel.clinic" Role="clinic" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.webUser" Role="webUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clinic">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="webUser">
+              <PropertyRef Name="clinicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clinicServiceRequest_clinicServiceType">
+          <End Type="PetWhizzModel.clinicServiceType" Role="clinicServiceType" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.clinicServiceRequest" Role="clinicServiceRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clinicServiceType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clinicServiceRequest">
+              <PropertyRef Name="clinicServiceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clinicServiceRequest_petOwner">
+          <End Type="PetWhizzModel.petOwner" Role="petOwner" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.clinicServiceRequest" Role="clinicServiceRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="petOwner">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clinicServiceRequest">
+              <PropertyRef Name="petOwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clinicServiceRequest_vetClinicScheduleSlot">
+          <End Type="PetWhizzModel.vetClinicScheduleSlot" Role="vetClinicScheduleSlot" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.clinicServiceRequest" Role="clinicServiceRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vetClinicScheduleSlot">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clinicServiceRequest">
+              <PropertyRef Name="requestedTimeSlotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clinicServiceType_serviceType">
+          <End Type="PetWhizzModel.serviceType" Role="serviceType" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.clinicServiceType" Role="clinicServiceType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="serviceType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clinicServiceType">
+              <PropertyRef Name="serviceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clinicStatus_clinicSubscription">
+          <End Type="PetWhizzModel.clinicSubscription" Role="clinicSubscription" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.clinicSubscriptionStatu" Role="clinicSubscriptionStatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clinicSubscription">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clinicSubscriptionStatu">
+              <PropertyRef Name="subscriptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clinicSubscription_paymentScheme">
+          <End Type="PetWhizzModel.paymentScheme" Role="paymentScheme" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.clinicSubscription" Role="clinicSubscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paymentScheme">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clinicSubscription">
+              <PropertyRef Name="paymentSchemeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clinicSubscriptionAddon_clinicSubscription">
+          <End Type="PetWhizzModel.clinicSubscription" Role="clinicSubscription" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.clinicSubscriptionAddon" Role="clinicSubscriptionAddon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clinicSubscription">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clinicSubscriptionAddon">
+              <PropertyRef Name="subscriptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_paymentScheme_clinicType">
+          <End Type="PetWhizzModel.clinicType" Role="clinicType" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.paymentScheme" Role="paymentScheme" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clinicType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="paymentScheme">
+              <PropertyRef Name="clinicTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_state_country">
+          <End Type="PetWhizzModel.country" Role="country" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.state" Role="state" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="state">
+              <PropertyRef Name="countryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_paymentScheme_paymentPlanTypes">
+          <End Type="PetWhizzModel.paymentPlanType" Role="paymentPlanType" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.paymentScheme" Role="paymentScheme" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paymentPlanType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="paymentScheme">
+              <PropertyRef Name="paymentPlanTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_petOwner_pet">
+          <End Type="PetWhizzModel.pet" Role="pet" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.petOwner" Role="petOwner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="petOwner">
+              <PropertyRef Name="petId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_petVetClinic_pet">
+          <End Type="PetWhizzModel.pet" Role="pet" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.petVetClinic" Role="petVetClinic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="petVetClinic">
+              <PropertyRef Name="petId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_petOwner_user">
+          <End Type="PetWhizzModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.petOwner" Role="petOwner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="petOwner">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_petVetClinic_vetClinic">
+          <End Type="PetWhizzModel.vetClinic" Role="vetClinic" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.petVetClinic" Role="petVetClinic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vetClinic">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="petVetClinic">
+              <PropertyRef Name="vetClinicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_state">
+          <End Type="PetWhizzModel.state" Role="state" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.user" Role="user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="stateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_userDevice_user">
+          <End Type="PetWhizzModel.user" Role="user" Multiplicity="1" />
+          <End Type="PetWhizzModel.userDevice" Role="userDevice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="userDevice">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_userVerification_user">
+          <End Type="PetWhizzModel.user" Role="user" Multiplicity="1" />
+          <End Type="PetWhizzModel.userVerification" Role="userVerification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="userVerification">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_userToken_userDevice">
+          <End Type="PetWhizzModel.userDevice" Role="userDevice" Multiplicity="1" />
+          <End Type="PetWhizzModel.userToken" Role="userToken" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="userDevice">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="userToken">
+              <PropertyRef Name="userDeviceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_vet_vetType">
+          <End Type="PetWhizzModel.vetType" Role="vetType" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.vet" Role="vet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vetType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="vet">
+              <PropertyRef Name="vetTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_webUser_vet">
+          <End Type="PetWhizzModel.vet" Role="vet" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.webUser" Role="webUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="webUser">
+              <PropertyRef Name="vetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_vetClinicSchedule_vetClinic">
+          <End Type="PetWhizzModel.vetClinic" Role="vetClinic" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.vetClinicSchedule" Role="vetClinicSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vetClinic">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="vetClinicSchedule">
+              <PropertyRef Name="vetClinicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_vetClinicScheduleSlot_vetClinicSchedule">
+          <End Type="PetWhizzModel.vetClinicSchedule" Role="vetClinicSchedule" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.vetClinicScheduleSlot" Role="vetClinicScheduleSlot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vetClinicSchedule">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="vetClinicScheduleSlot">
+              <PropertyRef Name="vetClinicScheduleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_webUser_webUserType">
+          <End Type="PetWhizzModel.webUserType" Role="webUserType" Multiplicity="0..1" />
+          <End Type="PetWhizzModel.webUser" Role="webUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="webUserType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="webUser">
+              <PropertyRef Name="webUserTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PetWhizzModelStoreContainer" CdmEntityContainer="PetWhizzEntities">
+          <EntitySetMapping Name="animals">
+            <EntityTypeMapping TypeName="PetWhizzModel.animal">
+              <MappingFragment StoreEntitySet="animal">
+                <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="scientificName" ColumnName="scientificName" />
+                <ScalarProperty Name="callingName" ColumnName="callingName" />
+                <ScalarProperty Name="animalName" ColumnName="animalName" />
+                <ScalarProperty Name="animalTypeId" ColumnName="animalTypeId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="animalBreeds">
+            <EntityTypeMapping TypeName="PetWhizzModel.animalBreed">
+              <MappingFragment StoreEntitySet="animalBreed">
+                <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="breedName" ColumnName="breedName" />
+                <ScalarProperty Name="animalId" ColumnName="animalId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="animalTypes">
+            <EntityTypeMapping TypeName="PetWhizzModel.animalType">
+              <MappingFragment StoreEntitySet="animalType">
+                <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="animalType1" ColumnName="animalType" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clinics">
+            <EntityTypeMapping TypeName="PetWhizzModel.clinic">
+              <MappingFragment StoreEntitySet="clinic">
+                <ScalarProperty Name="lastUpdatedBy" ColumnName="lastUpdatedBy" />
+                <ScalarProperty Name="lastUpdatedDate" ColumnName="lastUpdatedDate" />
+                <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+                <ScalarProperty Name="transactionCount" ColumnName="transactionCount" />
+                <ScalarProperty Name="isOpen" ColumnName="isOpen" />
+                <ScalarProperty Name="logo" ColumnName="logo" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="mobileNumber" ColumnName="mobileNumber" />
+                <ScalarProperty Name="telephoneNumber" ColumnName="telephoneNumber" />
+                <ScalarProperty Name="gps" ColumnName="gps" />
+                <ScalarProperty Name="cityId" ColumnName="cityId" />
+                <ScalarProperty Name="addressLine2" ColumnName="addressLine2" />
+                <ScalarProperty Name="addressLine1" ColumnName="addressLine1" />
+                <ScalarProperty Name="slogan" ColumnName="slogan" />
+                <ScalarProperty Name="clinicName" ColumnName="clinicName" />
+                <ScalarProperty Name="clinicTypeId" ColumnName="clinicTypeId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clinicServiceHours">
+            <EntityTypeMapping TypeName="PetWhizzModel.clinicServiceHour">
+              <MappingFragment StoreEntitySet="clinicServiceHours">
+                <ScalarProperty Name="closingTime" ColumnName="closingTime" />
+                <ScalarProperty Name="openingTime" ColumnName="openingTime" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="clinicId" ColumnName="clinicId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clinicServiceRequests">
+            <EntityTypeMapping TypeName="PetWhizzModel.clinicServiceRequest">
+              <MappingFragment StoreEntitySet="clinicServiceRequest">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="selfReference" ColumnName="selfReference" />
+                <ScalarProperty Name="isRescheduled" ColumnName="isRescheduled" />
+                <ScalarProperty Name="completedTime" ColumnName="completedTime" />
+                <ScalarProperty Name="isCompleted" ColumnName="isCompleted" />
+                <ScalarProperty Name="isApproved" ColumnName="isApproved" />
+                <ScalarProperty Name="requestedTime" ColumnName="requestedTime" />
+                <ScalarProperty Name="requestRemark" ColumnName="requestRemark" />
+                <ScalarProperty Name="clinicServiceTypeId" ColumnName="clinicServiceTypeId" />
+                <ScalarProperty Name="petOwnerId" ColumnName="petOwnerId" />
+                <ScalarProperty Name="requestedTimeSlotId" ColumnName="requestedTimeSlotId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clinicServiceTypes">
+            <EntityTypeMapping TypeName="PetWhizzModel.clinicServiceType">
+              <MappingFragment StoreEntitySet="clinicServiceType">
+                <ScalarProperty Name="serviceTypeId" ColumnName="serviceTypeId" />
+                <ScalarProperty Name="clinicId" ColumnName="clinicId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clinicSubscriptions">
+            <EntityTypeMapping TypeName="PetWhizzModel.clinicSubscription">
+              <MappingFragment StoreEntitySet="clinicSubscription">
+                <ScalarProperty Name="isRedeemed" ColumnName="isRedeemed" />
+                <ScalarProperty Name="isCurrent" ColumnName="isCurrent" />
+                <ScalarProperty Name="schemeFee" ColumnName="schemeFee" />
+                <ScalarProperty Name="subscribedDate" ColumnName="subscribedDate" />
+                <ScalarProperty Name="schemeAllowedTransactions" ColumnName="schemeAllowedTransactions" />
+                <ScalarProperty Name="subscribedUnits" ColumnName="subscribedUnits" />
+                <ScalarProperty Name="subscribedTo" ColumnName="subscribedTo" />
+                <ScalarProperty Name="subscribedFrom" ColumnName="subscribedFrom" />
+                <ScalarProperty Name="paymentSchemeId" ColumnName="paymentSchemeId" />
+                <ScalarProperty Name="clinicId" ColumnName="clinicId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clinicSubscriptionAddons">
+            <EntityTypeMapping TypeName="PetWhizzModel.clinicSubscriptionAddon">
+              <MappingFragment StoreEntitySet="clinicSubscriptionAddon">
+                <ScalarProperty Name="requestedDate" ColumnName="requestedDate" />
+                <ScalarProperty Name="addonFee" ColumnName="addonFee" />
+                <ScalarProperty Name="transactionsAllowed" ColumnName="transactionsAllowed" />
+                <ScalarProperty Name="subscriptionId" ColumnName="subscriptionId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clinicSubscriptionStatus">
+            <EntityTypeMapping TypeName="PetWhizzModel.clinicSubscriptionStatu">
+              <MappingFragment StoreEntitySet="clinicSubscriptionStatus">
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="currentTransactionsCount" ColumnName="currentTransactionsCount" />
+                <ScalarProperty Name="totalTransactionsAllowed" ColumnName="totalTransactionsAllowed" />
+                <ScalarProperty Name="subscriptionId" ColumnName="subscriptionId" />
+                <ScalarProperty Name="clinicId" ColumnName="clinicId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clinicTypes">
+            <EntityTypeMapping TypeName="PetWhizzModel.clinicType">
+              <MappingFragment StoreEntitySet="clinicType">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countries">
+            <EntityTypeMapping TypeName="PetWhizzModel.country">
+              <MappingFragment StoreEntitySet="country">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="sortname" ColumnName="sortname" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ioLoggers">
+            <EntityTypeMapping TypeName="PetWhizzModel.ioLogger">
+              <MappingFragment StoreEntitySet="ioLogger">
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="headers" ColumnName="headers" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="json" ColumnName="json" />
+                <ScalarProperty Name="triggeredTime" ColumnName="triggeredTime" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="paymentPlanTypes">
+            <EntityTypeMapping TypeName="PetWhizzModel.paymentPlanType">
+              <MappingFragment StoreEntitySet="paymentPlanTypes">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="planType" ColumnName="planType" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="paymentSchemes">
+            <EntityTypeMapping TypeName="PetWhizzModel.paymentScheme">
+              <MappingFragment StoreEntitySet="paymentScheme">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isFree" ColumnName="isFree" />
+                <ScalarProperty Name="schemeFee" ColumnName="schemeFee" />
+                <ScalarProperty Name="allowedTransactions" ColumnName="allowedTransactions" />
+                <ScalarProperty Name="schemeName" ColumnName="schemeName" />
+                <ScalarProperty Name="paymentPlanTypeId" ColumnName="paymentPlanTypeId" />
+                <ScalarProperty Name="clinicTypeId" ColumnName="clinicTypeId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pets">
+            <EntityTypeMapping TypeName="PetWhizzModel.pet">
+              <MappingFragment StoreEntitySet="pet">
+                <ScalarProperty Name="lastUpdatedBy" ColumnName="lastUpdatedBy" />
+                <ScalarProperty Name="lastUpdatedTime" ColumnName="lastUpdatedTime" />
+                <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="profileImage" ColumnName="profileImage" />
+                <ScalarProperty Name="coverImage" ColumnName="coverImage" />
+                <ScalarProperty Name="birthDay" ColumnName="birthDay" />
+                <ScalarProperty Name="sex" ColumnName="sex" />
+                <ScalarProperty Name="petName" ColumnName="petName" />
+                <ScalarProperty Name="breedId" ColumnName="breedId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="petOwners">
+            <EntityTypeMapping TypeName="PetWhizzModel.petOwner">
+              <MappingFragment StoreEntitySet="petOwner">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="enteryDate" ColumnName="enteryDate" />
+                <ScalarProperty Name="acceptedTime" ColumnName="acceptedTime" />
+                <ScalarProperty Name="sharedTime" ColumnName="sharedTime" />
+                <ScalarProperty Name="sharedUserId" ColumnName="sharedUserId" />
+                <ScalarProperty Name="isMainOwner" ColumnName="isMainOwner" />
+                <ScalarProperty Name="petId" ColumnName="petId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="petVetClinics">
+            <EntityTypeMapping TypeName="PetWhizzModel.petVetClinic">
+              <MappingFragment StoreEntitySet="petVetClinic">
+                <ScalarProperty Name="vetClinicId" ColumnName="vetClinicId" />
+                <ScalarProperty Name="petId" ColumnName="petId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="serviceTypes">
+            <EntityTypeMapping TypeName="PetWhizzModel.serviceType">
+              <MappingFragment StoreEntitySet="serviceType">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="serviceName" ColumnName="serviceName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="states">
+            <EntityTypeMapping TypeName="PetWhizzModel.state">
+              <MappingFragment StoreEntitySet="state">
+                <ScalarProperty Name="countryId" ColumnName="countryId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="PetWhizzModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="PetWhizzModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="lastUpdatedDate" ColumnName="lastUpdatedDate" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="profilePic" ColumnName="profilePic" />
+                <ScalarProperty Name="dateOfBirth" ColumnName="dateOfBirth" />
+                <ScalarProperty Name="middleName" ColumnName="middleName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="postalCode" ColumnName="postalCode" />
+                <ScalarProperty Name="stateId" ColumnName="stateId" />
+                <ScalarProperty Name="addressLine2" ColumnName="addressLine2" />
+                <ScalarProperty Name="addressLine1" ColumnName="addressLine1" />
+                <ScalarProperty Name="mobileNumber" ColumnName="mobileNumber" />
+                <ScalarProperty Name="eMail" ColumnName="eMail" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="userDevices">
+            <EntityTypeMapping TypeName="PetWhizzModel.userDevice">
+              <MappingFragment StoreEntitySet="userDevice">
+                <ScalarProperty Name="lastLogin" ColumnName="lastLogin" />
+                <ScalarProperty Name="deviceName" ColumnName="deviceName" />
+                <ScalarProperty Name="deviceId" ColumnName="deviceId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="userTokens">
+            <EntityTypeMapping TypeName="PetWhizzModel.userToken">
+              <MappingFragment StoreEntitySet="userToken">
+                <ScalarProperty Name="useCount" ColumnName="useCount" />
+                <ScalarProperty Name="expiryTime" ColumnName="expiryTime" />
+                <ScalarProperty Name="generatedTime" ColumnName="generatedTime" />
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="tokenType" ColumnName="tokenType" />
+                <ScalarProperty Name="userDeviceId" ColumnName="userDeviceId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="userVerifications">
+            <EntityTypeMapping TypeName="PetWhizzModel.userVerification">
+              <MappingFragment StoreEntitySet="userVerification">
+                <ScalarProperty Name="isValid" ColumnName="isValid" />
+                <ScalarProperty Name="expiryTime" ColumnName="expiryTime" />
+                <ScalarProperty Name="generatedTime" ColumnName="generatedTime" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="verificationType" ColumnName="verificationType" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vets">
+            <EntityTypeMapping TypeName="PetWhizzModel.vet">
+              <MappingFragment StoreEntitySet="vet">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="lastUpdatedBy" ColumnName="lastUpdatedBy" />
+                <ScalarProperty Name="lastUpdatedDate" ColumnName="lastUpdatedDate" />
+                <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+                <ScalarProperty Name="profilePicture" ColumnName="profilePicture" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="telephone" ColumnName="telephone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="regNo" ColumnName="regNo" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="vetTypeId" ColumnName="vetTypeId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vetClinics">
+            <EntityTypeMapping TypeName="PetWhizzModel.vetClinic">
+              <MappingFragment StoreEntitySet="vetClinic">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="clinicId" ColumnName="clinicId" />
+                <ScalarProperty Name="vetId" ColumnName="vetId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vetClinicSchedules">
+            <EntityTypeMapping TypeName="PetWhizzModel.vetClinicSchedule">
+              <MappingFragment StoreEntitySet="vetClinicSchedule">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="vetClinicId" ColumnName="vetClinicId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vetClinicScheduleSlots">
+            <EntityTypeMapping TypeName="PetWhizzModel.vetClinicScheduleSlot">
+              <MappingFragment StoreEntitySet="vetClinicScheduleSlot">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isReserved" ColumnName="isReserved" />
+                <ScalarProperty Name="slotEndsAt" ColumnName="slotEndsAt" />
+                <ScalarProperty Name="slotStartsAt" ColumnName="slotStartsAt" />
+                <ScalarProperty Name="appointmentNumber" ColumnName="appointmentNumber" />
+                <ScalarProperty Name="vetClinicScheduleId" ColumnName="vetClinicScheduleId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vetTypes">
+            <EntityTypeMapping TypeName="PetWhizzModel.vetType">
+              <MappingFragment StoreEntitySet="vetType">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="vetTypeName" ColumnName="vetTypeName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webUsers">
+            <EntityTypeMapping TypeName="PetWhizzModel.webUser">
+              <MappingFragment StoreEntitySet="webUser">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="clinicId" ColumnName="clinicId" />
+                <ScalarProperty Name="vetId" ColumnName="vetId" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="webUserTypeId" ColumnName="webUserTypeId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webUserTypes">
+            <EntityTypeMapping TypeName="PetWhizzModel.webUserType">
+              <MappingFragment StoreEntitySet="webUserType">
+                <ScalarProperty Name="userType" ColumnName="userType" />
+                <ScalarProperty Name="userTypeCode" ColumnName="userTypeCode" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

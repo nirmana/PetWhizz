@@ -1,0 +1,14 @@
+D:\Projects\PetWhizz\PetWhizz.Dto\bin\Debug\PetWhizz.Dto.dll.config
+D:\Projects\PetWhizz\PetWhizz.Dto\bin\Debug\PetWhizz.Dto.dll
+D:\Projects\PetWhizz\PetWhizz.Dto\bin\Debug\PetWhizz.Dto.pdb
+D:\Projects\PetWhizz\PetWhizz.Dto\bin\Debug\Newtonsoft.Json.dll
+D:\Projects\PetWhizz\PetWhizz.Dto\bin\Debug\NLog.dll
+D:\Projects\PetWhizz\PetWhizz.Dto\bin\Debug\PetWhizz.Data.dll
+D:\Projects\PetWhizz\PetWhizz.Dto\bin\Debug\EntityFramework.dll
+D:\Projects\PetWhizz\PetWhizz.Dto\bin\Debug\PetWhizz.Data.pdb
+D:\Projects\PetWhizz\PetWhizz.Dto\bin\Debug\Newtonsoft.Json.xml
+D:\Projects\PetWhizz\PetWhizz.Dto\bin\Debug\NLog.xml
+D:\Projects\PetWhizz\PetWhizz.Dto\bin\Debug\EntityFramework.xml
+D:\Projects\PetWhizz\PetWhizz.Dto\obj\Debug\PetWhizz.Dto.csprojResolveAssemblyReference.cache
+D:\Projects\PetWhizz\PetWhizz.Dto\obj\Debug\PetWhizz.Dto.dll
+D:\Projects\PetWhizz\PetWhizz.Dto\obj\Debug\PetWhizz.Dto.pdb

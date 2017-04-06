@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CC2A6605-A8A5-44AF-837D-EA93FF06C21F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PetWhizz.Data</RootNamespace>
+    <AssemblyName>PetWhizz.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.4.3.4\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="animal.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="animalBreed.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="animalType.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="clinic.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="clinicServiceHour.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="clinicServiceRequest.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="clinicServiceType.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="clinicSubscription.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="clinicSubscriptionAddon.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="clinicSubscriptionStatu.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="clinicType.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="country.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ioLogger.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="paymentPlanType.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="paymentScheme.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pet.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="petOwner.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="petVetClinic.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PetWhizz.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PetWhizz.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PetWhizz.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PetWhizz.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PetWhizz.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="serviceType.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="state.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="user.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="userDevice.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="userToken.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="userVerification.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vet.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vetClinic.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vetClinicSchedule.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vetClinicScheduleSlot.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vetType.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="webUser.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="webUserType.cs">
+      <DependentUpon>PetWhizz.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <EntityDeploy Include="PetWhizz.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PetWhizz.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="PetWhizz.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PetWhizz.edmx</DependentUpon>
+      <LastGenOutput>PetWhizz.Context.cs</LastGenOutput>
+    </None>
+    <None Include="PetWhizz.edmx.diagram">
+      <DependentUpon>PetWhizz.edmx</DependentUpon>
+    </None>
+    <None Include="PetWhizz.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PetWhizz.edmx</DependentUpon>
+      <LastGenOutput>PetWhizz.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

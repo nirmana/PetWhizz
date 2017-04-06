@@ -1,0 +1,13 @@
+D:\Projects\PetWhizz\PetWhizz.Data\bin\Debug\PetWhizz.Data.dll.config
+D:\Projects\PetWhizz\PetWhizz.Data\bin\Debug\PetWhizz.Data.dll
+D:\Projects\PetWhizz\PetWhizz.Data\bin\Debug\PetWhizz.Data.pdb
+D:\Projects\PetWhizz\PetWhizz.Data\bin\Debug\EntityFramework.dll
+D:\Projects\PetWhizz\PetWhizz.Data\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\PetWhizz\PetWhizz.Data\bin\Debug\Newtonsoft.Json.dll
+D:\Projects\PetWhizz\PetWhizz.Data\bin\Debug\NLog.dll
+D:\Projects\PetWhizz\PetWhizz.Data\bin\Debug\EntityFramework.xml
+D:\Projects\PetWhizz\PetWhizz.Data\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects\PetWhizz\PetWhizz.Data\bin\Debug\Newtonsoft.Json.xml
+D:\Projects\PetWhizz\PetWhizz.Data\bin\Debug\NLog.xml
+D:\Projects\PetWhizz\PetWhizz.Data\obj\Debug\PetWhizz.Data.dll
+D:\Projects\PetWhizz\PetWhizz.Data\obj\Debug\PetWhizz.Data.pdb

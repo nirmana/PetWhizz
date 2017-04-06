@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f6ec6311aacd4ef6b07c2086737720eb" Name="Diagram1" ZoomLevel="59">
+        <EntityTypeShape EntityType="PetWhizzModel.animal" Width="1.5" PointX="1.5" PointY="40.375" />
+        <EntityTypeShape EntityType="PetWhizzModel.animalBreed" Width="1.5" PointX="3.75" PointY="40.625" />
+        <EntityTypeShape EntityType="PetWhizzModel.animalType" Width="1.5" PointX="1.5" PointY="44.75" />
+        <EntityTypeShape EntityType="PetWhizzModel.clinic" Width="1.5" PointX="3" PointY="14.375" />
+        <EntityTypeShape EntityType="PetWhizzModel.clinicServiceHour" Width="1.5" PointX="5.25" PointY="30.75" />
+        <EntityTypeShape EntityType="PetWhizzModel.clinicServiceRequest" Width="1.5" PointX="10.5" PointY="17.125" />
+        <EntityTypeShape EntityType="PetWhizzModel.clinicServiceType" Width="1.5" PointX="5.25" PointY="18" />
+        <EntityTypeShape EntityType="PetWhizzModel.clinicSubscription" Width="1.5" PointX="5.25" PointY="12.75" />
+        <EntityTypeShape EntityType="PetWhizzModel.clinicSubscriptionAddon" Width="1.5" PointX="7.5" PointY="11.625" />
+        <EntityTypeShape EntityType="PetWhizzModel.clinicSubscriptionStatu" Width="1.5" PointX="7.5" PointY="15" />
+        <EntityTypeShape EntityType="PetWhizzModel.clinicType" Width="1.5" PointX="0.75" PointY="12.375" />
+        <EntityTypeShape EntityType="PetWhizzModel.country" Width="1.5" PointX="1.5" PointY="35.625" />
+        <EntityTypeShape EntityType="PetWhizzModel.ioLogger" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PetWhizzModel.paymentPlanType" Width="1.5" PointX="0.75" PointY="9.375" />
+        <EntityTypeShape EntityType="PetWhizzModel.paymentScheme" Width="1.5" PointX="3" PointY="9.625" />
+        <EntityTypeShape EntityType="PetWhizzModel.pet" Width="1.5" PointX="6" PointY="39.875" />
+        <EntityTypeShape EntityType="PetWhizzModel.petOwner" Width="1.5" PointX="8.25" PointY="37.25" />
+        <EntityTypeShape EntityType="PetWhizzModel.petVetClinic" Width="1.5" PointX="8.25" PointY="23.75" />
+        <EntityTypeShape EntityType="PetWhizzModel.serviceType" Width="1.5" PointX="3" PointY="21.125" />
+        <EntityTypeShape EntityType="PetWhizzModel.state" Width="1.5" PointX="3.75" PointY="35.5" />
+        <EntityTypeShape EntityType="PetWhizzModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PetWhizzModel.user" Width="1.5" PointX="6" PointY="34" />
+        <EntityTypeShape EntityType="PetWhizzModel.userDevice" Width="1.5" PointX="8.25" PointY="33.75" />
+        <EntityTypeShape EntityType="PetWhizzModel.userToken" Width="1.5" PointX="10.5" PointY="33.625" />
+        <EntityTypeShape EntityType="PetWhizzModel.userVerification" Width="1.5" PointX="8.25" PointY="41.875" />
+        <EntityTypeShape EntityType="PetWhizzModel.vet" Width="1.5" PointX="6" PointY="24.375" />
+        <EntityTypeShape EntityType="PetWhizzModel.vetClinic" Width="1.5" PointX="3.75" PointY="5.75" />
+        <EntityTypeShape EntityType="PetWhizzModel.vetClinicSchedule" Width="1.5" PointX="6" PointY="5.75" />
+        <EntityTypeShape EntityType="PetWhizzModel.vetClinicScheduleSlot" Width="1.5" PointX="8.25" PointY="5.5" />
+        <EntityTypeShape EntityType="PetWhizzModel.vetType" Width="1.5" PointX="3.75" PointY="25.5" />
+        <EntityTypeShape EntityType="PetWhizzModel.webUser" Width="1.5" PointX="8.25" PointY="18.5" />
+        <EntityTypeShape EntityType="PetWhizzModel.webUserType" Width="1.5" PointX="6" PointY="21.875" />
+        <AssociationConnector Association="PetWhizzModel.FK_animal_animalType" />
+        <AssociationConnector Association="PetWhizzModel.FK_animalBreed_animal" />
+        <AssociationConnector Association="PetWhizzModel.FK_pet_animalBreed" />
+        <AssociationConnector Association="PetWhizzModel.FK_clinic_clinicType" />
+        <AssociationConnector Association="PetWhizzModel.FK_clinicServiceHours_clinic" />
+        <AssociationConnector Association="PetWhizzModel.FK_clinicServiceType_clinic" />
+        <AssociationConnector Association="PetWhizzModel.FK_clinicStatus_clinic" />
+        <AssociationConnector Association="PetWhizzModel.FK_clinicSubscription_clinic" />
+        <AssociationConnector Association="PetWhizzModel.FK_webUser_clinic" />
+        <AssociationConnector Association="PetWhizzModel.FK_clinicServiceRequest_clinicServiceType" />
+        <AssociationConnector Association="PetWhizzModel.FK_clinicServiceRequest_petOwner" />
+        <AssociationConnector Association="PetWhizzModel.FK_clinicServiceRequest_vetClinicScheduleSlot" />
+        <AssociationConnector Association="PetWhizzModel.FK_clinicServiceType_serviceType" />
+        <AssociationConnector Association="PetWhizzModel.FK_clinicStatus_clinicSubscription" />
+        <AssociationConnector Association="PetWhizzModel.FK_clinicSubscription_paymentScheme" />
+        <AssociationConnector Association="PetWhizzModel.FK_clinicSubscriptionAddon_clinicSubscription" />
+        <AssociationConnector Association="PetWhizzModel.FK_paymentScheme_clinicType" />
+        <AssociationConnector Association="PetWhizzModel.FK_state_country" />
+        <AssociationConnector Association="PetWhizzModel.FK_paymentScheme_paymentPlanTypes" />
+        <AssociationConnector Association="PetWhizzModel.FK_petOwner_pet" />
+        <AssociationConnector Association="PetWhizzModel.FK_petVetClinic_pet" />
+        <AssociationConnector Association="PetWhizzModel.FK_petOwner_user" />
+        <AssociationConnector Association="PetWhizzModel.FK_petVetClinic_vetClinic" />
+        <AssociationConnector Association="PetWhizzModel.FK_user_state" />
+        <AssociationConnector Association="PetWhizzModel.FK_userDevice_user" />
+        <AssociationConnector Association="PetWhizzModel.FK_userVerification_user" />
+        <AssociationConnector Association="PetWhizzModel.FK_userToken_userDevice" />
+        <AssociationConnector Association="PetWhizzModel.FK_vet_vetType" />
+        <AssociationConnector Association="PetWhizzModel.FK_webUser_vet" />
+        <AssociationConnector Association="PetWhizzModel.FK_vetClinicSchedule_vetClinic" />
+        <AssociationConnector Association="PetWhizzModel.FK_vetClinicScheduleSlot_vetClinicSchedule" />
+        <AssociationConnector Association="PetWhizzModel.FK_webUser_webUserType" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

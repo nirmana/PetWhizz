@@ -1,0 +1,74 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetWhizz.Api", "PetWhizz.Api\PetWhizz.Api.csproj", "{E7579E28-6582-49EF-A95A-21E5638E4E2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetWhizz.Utilities", "PetWhizz.Utilities\PetWhizz.Utilities.csproj", "{515E30B6-BA5F-47CC-9ED2-531F63BF3CC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetWhizz.Dto", "PetWhizz.Dto\PetWhizz.Dto.csproj", "{6DD3A91B-4EB2-499C-AA9B-01DECF0E6EAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetWhizz.Data", "PetWhizz.Data\PetWhizz.Data.csproj", "{CC2A6605-A8A5-44AF-837D-EA93FF06C21F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{FB28DC34-08D5-4EA8-A2C0-500461B23847}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetWhizz.Web", "PetWhizz.Web\PetWhizz.Web.csproj", "{2B58A6D1-53AD-4AEA-928A-6CDADF688900}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E7579E28-6582-49EF-A95A-21E5638E4E2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7579E28-6582-49EF-A95A-21E5638E4E2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7579E28-6582-49EF-A95A-21E5638E4E2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7579E28-6582-49EF-A95A-21E5638E4E2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{515E30B6-BA5F-47CC-9ED2-531F63BF3CC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{515E30B6-BA5F-47CC-9ED2-531F63BF3CC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{515E30B6-BA5F-47CC-9ED2-531F63BF3CC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{515E30B6-BA5F-47CC-9ED2-531F63BF3CC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DD3A91B-4EB2-499C-AA9B-01DECF0E6EAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DD3A91B-4EB2-499C-AA9B-01DECF0E6EAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DD3A91B-4EB2-499C-AA9B-01DECF0E6EAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DD3A91B-4EB2-499C-AA9B-01DECF0E6EAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC2A6605-A8A5-44AF-837D-EA93FF06C21F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC2A6605-A8A5-44AF-837D-EA93FF06C21F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC2A6605-A8A5-44AF-837D-EA93FF06C21F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC2A6605-A8A5-44AF-837D-EA93FF06C21F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B58A6D1-53AD-4AEA-928A-6CDADF688900}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B58A6D1-53AD-4AEA-928A-6CDADF688900}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B58A6D1-53AD-4AEA-928A-6CDADF688900}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B58A6D1-53AD-4AEA-928A-6CDADF688900}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://rangad.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = PetWhizz.Api\\PetWhizz.Api.csproj
+		SccProjectName1 = PetWhizz.Api
+		SccLocalPath1 = PetWhizz.Api
+		SccProjectUniqueName2 = PetWhizz.Utilities\\PetWhizz.Utilities.csproj
+		SccProjectName2 = PetWhizz.Utilities
+		SccLocalPath2 = PetWhizz.Utilities
+		SccProjectUniqueName3 = PetWhizz.Dto\\PetWhizz.Dto.csproj
+		SccProjectName3 = PetWhizz.Dto
+		SccLocalPath3 = PetWhizz.Dto
+		SccProjectUniqueName4 = PetWhizz.Data\\PetWhizz.Data.csproj
+		SccProjectName4 = PetWhizz.Data
+		SccLocalPath4 = PetWhizz.Data
+		SccProjectUniqueName5 = PetWhizz.Web\\PetWhizz.Web.csproj
+		SccProjectName5 = PetWhizz.Web
+		SccLocalPath5 = PetWhizz.Web
+	EndGlobalSection
+EndGlobal
